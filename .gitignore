@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# LinkedIn Saved Auth Session (DO NOT COMMIT SESSIONS OR COOKIES)
+.linkedin-session/
+*.session
+
+# Environment & Keys
+.env
+.env.local
+
+# Logs & Debug
+logs/
+*.log
+out/
+tmp/
+
+# OS specific
+.DS_Store
+Thumbs.db
