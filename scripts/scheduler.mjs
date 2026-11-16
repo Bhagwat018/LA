@@ -17,9 +17,9 @@ if (!fs.existsSync(logsDir)) {
 console.log("\n=======================================================");
 console.log("⏰ LinkedIn Autonomous Growth Daemon Scheduler Active");
 console.log("=======================================================");
-console.log("Peak LinkedIn Operating Windows:");
-console.log("  ☀️  Morning Peak Slot:    09:30 AM (Monday - Friday)");
-console.log("  🌤️  Afternoon Peak Slot:  02:30 PM (Monday - Friday)");
+console.log("Active Operating Window (After 12:00 PM & Before 8:00 PM):");
+console.log("  🌤️  Afternoon Peak Slot:  01:30 PM (Monday - Friday)");
+console.log("  🌆  Evening Peak Slot:    05:30 PM (Monday - Friday)");
 console.log(`Current System Time: ${new Date().toLocaleString()}`);
 console.log("=======================================================\n");
 
@@ -55,14 +55,14 @@ function triggerPipeline(triggerLabel = "Scheduled Peak Run") {
   });
 }
 
-// Morning Peak: 09:30 AM Mon-Fri
-cron.schedule("30 9 * * 1-5", () => {
-  triggerPipeline("Morning Peak (09:30 AM)");
+// Afternoon Peak: 01:30 PM (13:30) Mon-Fri (After 12 PM, Before 8 PM)
+cron.schedule("30 13 * * 1-5", () => {
+  triggerPipeline("Afternoon Peak (01:30 PM)");
 });
 
-// Afternoon Peak: 02:30 PM (14:30) Mon-Fri
-cron.schedule("30 14 * * 1-5", () => {
-  triggerPipeline("Afternoon Peak (02:30 PM)");
+// Evening Peak: 05:30 PM (17:30) Mon-Fri (After 12 PM, Before 8 PM)
+cron.schedule("30 17 * * 1-5", () => {
+  triggerPipeline("Evening Peak (05:30 PM)");
 });
 
 // If user starts with --now, run immediately on boot

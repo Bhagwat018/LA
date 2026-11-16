@@ -1,31 +1,56 @@
 {
-  "name": "Bhagwat",
-  "title": "Full-Stack Web & Mobile App Developer | AI Automation Specialist",
+  "name": "Gopal Bhagwat",
+  "title": "Senior Mobile Engineer | React Native & Full-Stack Specialist (iOS, Android, Web)",
   "experienceYears": 3,
-  "availability": "Freelance / Part-Time / Immediate Start",
-  "hourlyRate": "$20 - $35 / hr (Flexible)",
+  "availability": "Freelance / Contract / Immediate Start",
+  "hourlyRate": "$25 - $45 / hr (Flexible / Milestone Based)",
+  "contact": {
+    "email": "gopalbhagwat21@gmail.com",
+    "phone": "+916267957589",
+    "location": "Indore, India",
+    "github": "https://github.com/Bhagwat018"
+  },
+  "summary": "Results-driven Mobile & Full-Stack Engineer with 3+ years of React Native experience delivering 4 production apps (OTT, social, real-time sports) for iOS, Android, and Amazon, as well as real-time streaming, Turbo Modules, and native bridging (Kotlin, Java, Swift). Code Commander Award 2025 recipient.",
   "skills": [
-    "React",
+    "React Native",
+    "React.js",
     "Next.js",
-    "Node.js",
     "TypeScript",
-    "JavaScript",
-    "Mobile Apps (React Native / Flutter / Android)",
-    "Python AI & Automation",
-    "RESTful APIs & GraphQL",
-    "PostgreSQL / MongoDB / Firebase",
-    "Tailwind CSS / UI Design"
+    "JavaScript (ES6+)",
+    "Kotlin",
+    "Java",
+    "Native Modules & Turbo Modules Bridging",
+    "Redux Toolkit & TanStack Query",
+    "Tailwind CSS & shadcn-rn",
+    "In-App Purchases (Apple StoreKit, Google Play Billing)",
+    "Offline-First Architecture & SQLite / RoomDB",
+    "Deep Linking & Push Notifications (FCM/ADM)",
+    "AWS IVS & Agora SDK (Live Streaming)",
+    "Stripe & Payment Gateways",
+    "REST APIs & GraphQL",
+    "Firebase Firestore"
   ],
-  "servicesOffered": [
-    "Full-Stack Web Application Development (MVP from scratch)",
-    "Mobile App Development (Android & iOS)",
-    "Bug Fixes & Feature Enhancements in existing apps",
-    "AI Agent & Browser Automation Workflows",
-    "API Development & 3rd Party Integrations (Stripe, Razorpay, Auth)"
+  "featuredProjects": [
+    {
+      "name": "KickScore (Web + App)",
+      "description": "Cross-platform app and web delivering real-time sports scores, interactive chat, and live feeds to 100K+ users."
+    },
+    {
+      "name": "TruVideo SDK Integration",
+      "description": "Engineered React Native and Turbo Module bridges for enterprise automotive SDK connecting native Android (Kotlin) & iOS (Swift)."
+    },
+    {
+      "name": "Open Source NPM Packages",
+      "description": "Published react-native-responsive-layout-kit and react-native-shimmer-craft."
+    },
+    {
+      "name": "SaveKit & Invoicely",
+      "description": "Offline-first mobile applications with SQLite local persistence and AdMob."
+    }
   ],
   "pitchTemplates": {
-    "webFreelance": "Hi {name}, I saw your post regarding the {topic} project. I am a Full-Stack developer specializing in React/Node.js with experience delivering fast, production-ready MVPs. I can take this up immediately on a milestone basis. Would love to connect and share relevant live demos!",
-    "appFreelance": "Hi {name}, noticed you're looking for a developer for your mobile app. I build clean, performant apps with smooth UI and secure backend integration. Let me know if you are open for a quick 5-min chat to discuss your scope and timeline.",
-    "generalPartTime": "Hi {name}, I came across your requirement for a part-time / contract developer. I have solid hands-on experience across modern full-stack web and mobile stacks, and can commit 20-25 productive hours per week right away."
+    "reactNativeMobile": "Hi {name}, saw your post looking for a React Native / Mobile developer. I'm a Senior Mobile Engineer (3+ yrs exp, 4 production apps on iOS/Android, native bridging in Kotlin/Swift). Available immediately on contract/milestone. Would love to share relevant live apps!",
+    "fullStackWeb": "Hi {name}, saw your post regarding the {topic} project. I build high-performance web & mobile apps with React, Next.js, and TypeScript (built KickScore to 100k+ users). Available immediately for contract work.",
+    "generalContract": "Hi {name}, saw your requirement for a {topic} developer. I have 3+ years building scalable cross-platform apps with clean architectures. Ready to jump in immediately on a flexible milestone basis."
   }
 }

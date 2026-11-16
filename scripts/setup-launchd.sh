@@ -44,17 +44,17 @@ cat <<EOF > "$PLIST_PATH"
     </dict>
     <key>StartCalendarInterval</key>
     <array>
-        <!-- Morning Peak: 09:30 AM Daily -->
+        <!-- Afternoon Peak: 01:30 PM (13:30) Daily (After 12 PM, Before 8 PM) -->
         <dict>
             <key>Hour</key>
-            <integer>9</integer>
+            <integer>13</integer>
             <key>Minute</key>
             <integer>30</integer>
         </dict>
-        <!-- Afternoon Peak: 02:30 PM (14:30) Daily -->
+        <!-- Evening Peak: 05:30 PM (17:30) Daily (After 12 PM, Before 8 PM) -->
         <dict>
             <key>Hour</key>
-            <integer>14</integer>
+            <integer>17</integer>
             <key>Minute</key>
             <integer>30</integer>
         </dict>
@@ -77,7 +77,7 @@ echo "======================================================="
 echo "🎉 SUCCESS: macOS Background Daemon Scheduled!"
 echo "======================================================="
 echo "📁 Plist installed at: $PLIST_PATH"
-echo "⏰ Scheduled Times: Every Day at 09:30 AM & 02:30 PM"
+echo "⏰ Scheduled Times: Every Day at 01:30 PM & 05:30 PM (After 12 PM, Before 8 PM)"
 echo "📄 Logs will be written to: $PROJECT_DIR/logs/launchd.log"
 echo "ℹ️ To check status: launchctl list | grep com.linkedin"
 echo "ℹ️ To disable: ./scripts/setup-launchd.sh --uninstall"

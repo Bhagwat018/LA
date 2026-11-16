@@ -28,6 +28,8 @@ console.log("=======================================================\n");
 
 // High-intent search queries that founders and recruiters use when they have budget
 const SEARCH_QUERIES = [
+  "\"looking for react native developer\"",
+  "\"hiring mobile developer\" freelance",
   "\"we are hiring\" \"freelance developer\"",
   "\"looking for freelance developer\"",
   "\"need a developer\" MVP",
@@ -136,8 +138,8 @@ async function runHunter() {
         const text = raw.fullText;
 
         // 1. Check if it is a HIRING post (not a job seeker)
-        const isHiring = /(we are hiring|i am hiring|looking for|need a developer|urgent requirement|developer needed|freelance requirement|contract position|reach out at|send cv to|send portfolio)/i.test(text);
-        const isJobSeeker = /(open to work|looking for opportunities for myself|i am looking for a job|seeking a new role|graduated from)/i.test(text);
+        const isJobSeeker = /(open to work|#opentowork|looking for.*opportunit|seeking.*role|seeking.*opportunit|looking for a job|looking for internships|hire me|aspiring developer|my resume|my portfolio|excited to share that i)/i.test(text);
+        const isHiring = /(we are hiring|i am hiring|hiring for|looking to hire|looking for (a |an )?(developer|engineer|coder|programmer|freelancer)|need (a |an )?(developer|engineer)|urgent requirement|developer needed|freelance requirement|contract position|reach out at|send cv to|send portfolio|send resume to|drop your cv|comment interested)/i.test(text);
 
         if (isHiring && !isJobSeeker) {
           seenAuthors.add(raw.authorName);
@@ -156,9 +158,9 @@ async function runHunter() {
 
           // 4. Generate high-conversion tailored proposal
           const firstName = raw.authorName.split(" ")[0] || "there";
-          const techMention = techStackFound.length > 0 ? techStackFound.slice(0, 3).join(", ") : "Full-Stack Web & Mobile";
+          const techMention = techStackFound.length > 0 ? techStackFound.slice(0, 3).join(", ") : "React Native & Full-Stack";
           
-          const tailoredPitch = `Hi ${firstName}, I came across your requirement for a ${techMention} developer. I specialize in building rapid, high-performance MVPs and scalable web/mobile applications. I am available immediately on a milestone/contract basis. Would love to share relevant live projects and discuss your scope!`;
+          const tailoredPitch = `Hi ${firstName}, I came across your post looking for a ${techMention} developer. I'm a Senior Mobile & Full-Stack Engineer with 3+ years experience delivering 4+ production apps across iOS, Android & Web. I'm available immediately on contract/milestone basis. Would love to share relevant live projects and discuss your scope!`;
 
           const lead = {
             id: `lead-${Date.now()}-${verifiedLeads.length + 1}`,

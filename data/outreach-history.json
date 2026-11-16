@@ -1,0 +1,32 @@
+[
+  {
+    "id": "lead-1794828867591-1",
+    "authorName": "Hiring Lead",
+    "authorProfile": "https://www.linkedin.com/in/riya-singh-795b19399/",
+    "email": "riya.singh@karyanest.in",
+    "status": "PROFILE_FOLLOW_ONLY_OR_CONNECTED",
+    "method": "LINKEDIN",
+    "pitchSent": "Hi Hiring, saw your post for a react developer. I'm a Senior Mobile & Full-Stack Engineer (3+ yrs, 4 production apps, React Native/Web/iOS/Android). Available immediately on contract/milestone. Would love to connect and share live apps!",
+    "contactedAt": "2026-11-16T11:36:22.748Z"
+  },
+  {
+    "id": "lead-1794827056516-1",
+    "authorName": "Urvashi Relwani",
+    "authorProfile": "https://www.linkedin.com/in/urvashi-relwani-abb684209/",
+    "email": "urvashi.relwani@girnarsoft.com",
+    "status": "PROFILE_FOLLOW_ONLY_OR_CONNECTED",
+    "method": "LINKEDIN",
+    "pitchSent": "Hi Urvashi, saw your post for a power platform developer. I'm a Senior Mobile & Full-Stack Engineer (3+ yrs, 4 production apps, React Native/Web/iOS/Android). Available immediately on contract/milestone. Would love to connect and share live apps!",
+    "contactedAt": "2026-11-16T11:36:35.969Z"
+  },
+  {
+    "id": "lead-1794827114183-2",
+    "authorName": "Anand Yadav",
+    "authorProfile": "https://www.linkedin.com/in/anand-yadav-469109244/",
+    "email": "anand.y@jconnectinc.com",
+    "status": "PROFILE_FOLLOW_ONLY_OR_CONNECTED",
+    "method": "LINKEDIN",
+    "pitchSent": "Hi Anand, saw your post for a contract developer. I'm a Senior Mobile & Full-Stack Engineer (3+ yrs, 4 production apps, React Native/Web/iOS/Android). Available immediately on contract/milestone. Would love to connect and share live apps!",
+    "contactedAt": "2026-11-16T11:36:50.420Z"
+  }
+]
