@@ -117,22 +117,67 @@ Senior Mobile & Full-Stack Engineer`,
   await transporter.sendMail(mailOptions);
 }
 
+const emailRulesPath = path.join(rootDir, "config", "email-rules.json");
+const emailRules = fs.existsSync(emailRulesPath)
+  ? JSON.parse(fs.readFileSync(emailRulesPath, "utf-8"))
+  : null;
+
+function validateFreelanceEmailIntent(lead) {
+  if (!lead.email) return { ok: false, reason: "NO_EMAIL" };
+
+  const emailLower = lead.email.toLowerCase();
+
+  // Rule 1: Anti-Spam Blacklist (Never email generic support/info/noreply)
+  if (emailRules?.validationRules?.blacklistedEmailPrefixes) {
+    const isBlacklisted = emailRules.validationRules.blacklistedEmailPrefixes.some(
+      (prefix) => emailLower.startsWith(`${prefix}@`) || emailLower.startsWith(`${prefix}.`)
+    );
+    if (isBlacklisted) {
+      return { ok: false, reason: `BLOCKED_BLACKLISTED_PREFIX: ${lead.email}` };
+    }
+  }
+
+  const text = (lead.cleanExcerpt || "").toLowerCase();
+
+  // Rule 2: Exclude Job Seekers / Non-Hiring
+  const isJobSeeker = /(open to work|#opentowork|seeking.*opportunit|looking for a job|my resume|graduated)/i.test(text);
+  if (isJobSeeker) {
+    return { ok: false, reason: "BLOCKED_JOB_SEEKER_POST" };
+  }
+
+  // Rule 3: Must Have Explicit Freelance / Contract Hiring Signals
+  const hasFreelanceSignals = /(freelance|contract|contractor|remote|project|hiring|looking for|need a developer|developer needed|urgent requirement|send cv|send portfolio|send resume|reach out at)/i.test(text);
+  if (!hasFreelanceSignals) {
+    return { ok: false, reason: "BLOCKED_NO_EXPLICIT_FREELANCE_INTENT" };
+  }
+
+  return { ok: true, reason: "VERIFIED_FREELANCE_HIRING_POST" };
+}
+
 async function runOutreach() {
   const emailTransporter = getEmailTransporter();
   let emailsSentCount = 0;
 
   // ----------------------------------------------------
   // Stage 1: Send Cold Emails to Leads with Direct Emails
+  // STRICT FREELANCE / CONTRACT HIRING ONLY
   // ----------------------------------------------------
   if (emailTransporter) {
-    console.log("📧 SMTP Configured: Checking for verified client emails to pitch...");
+    console.log("🛡️ Checking leads against Strict Freelancing Email Safety Rules...");
     for (const lead of leads) {
       if (emailsSentCount >= MAX_EMAILS_PER_RUN) break;
       if (lead.email && !contactedEmails.has(lead.email)) {
+        const validation = validateFreelanceEmailIntent(lead);
+
+        if (!validation.ok) {
+          console.log(`🛡️ [Safety Guardrail] Skipped ${lead.email}: ${validation.reason}`);
+          continue;
+        }
+
         try {
-          console.log(`📤 Sending direct email pitch to: ${lead.email} (${lead.authorName})...`);
+          console.log(`🎯 [Verified Freelance Lead] Sending proposal to: ${lead.email} (${lead.authorName})...`);
           await sendEmailPitch(emailTransporter, lead);
-          console.log(`   ✅ Email sent successfully to ${lead.email}!`);
+          console.log(`   ✅ Proposal email sent successfully to ${lead.email}!`);
           emailsSentCount++;
           contactedEmails.add(lead.email);
 
@@ -143,18 +188,21 @@ async function runOutreach() {
             email: lead.email,
             status: "EMAIL_SENT",
             method: "EMAIL",
-            pitchSent: `Direct email sent for ${lead.techStack?.join(", ") || "Mobile/Web"} role`,
+            pitchSent: `Direct proposal email sent for ${lead.techStack?.join(", ") || "Mobile/Web"} freelance requirement`,
             contactedAt: new Date().toISOString(),
           });
           fs.writeFileSync(historyPath, JSON.stringify(history, null, 2), "utf-8");
 
-          await new Promise((r) => setTimeout(r, 2500));
+          // Random pause between emails (4-8 seconds) for high deliverability
+          const emailPause = Math.floor(Math.random() * 4000) + 4000;
+          console.log(`⏳ Safety pause: ${(emailPause / 1000).toFixed(1)}s before next email...`);
+          await new Promise((r) => setTimeout(r, emailPause));
         } catch (emailErr) {
           console.error(`   ⚠️ Failed to email ${lead.email}:`, emailErr.message);
         }
       }
     }
-    console.log(`📊 Stage 1 Complete: Sent ${emailsSentCount} email pitches.\n`);
+    console.log(`📊 Stage 1 Complete: Sent ${emailsSentCount} verified freelance proposal emails.\n`);
   } else {
     console.log("ℹ️ Note: SMTP email credentials not configured in .env.");
     console.log("   (To enable auto-emailing to recruiter emails, copy .env.example to .env and add SMTP details)\n");

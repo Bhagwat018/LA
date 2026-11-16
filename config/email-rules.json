@@ -1,0 +1,56 @@
+{
+  "name": "Freelance-Only Email Outreach Rules",
+  "version": "1.0.0",
+  "policy": "STRICT_FREELANCE_AND_CONTRACT_HIRING_ONLY",
+  "description": "Zero spam policy. Emails are exclusively sent to verified recruiters, clients, or founders who publicly posted looking for freelance or contract software developers.",
+  "validationRules": {
+    "requireExplicitHiringIntent": true,
+    "requireHiringKeywords": [
+      "freelance",
+      "contract",
+      "contractor",
+      "remote developer",
+      "hiring developer",
+      "looking for developer",
+      "need developer",
+      "react developer",
+      "mobile developer",
+      "app developer",
+      "send cv",
+      "send portfolio",
+      "send resume",
+      "reach out at"
+    ],
+    "disallowedKeywords": [
+      "open to work",
+      "#opentowork",
+      "seeking opportunities",
+      "looking for job",
+      "graduated",
+      "sales executive",
+      "content writer"
+    ],
+    "blacklistedEmailPrefixes": [
+      "noreply",
+      "no-reply",
+      "donotreply",
+      "support",
+      "help",
+      "billing",
+      "marketing",
+      "press",
+      "media",
+      "newsletter",
+      "privacy",
+      "legal",
+      "admin",
+      "security"
+    ]
+  },
+  "throttling": {
+    "maxEmailsPerRun": 3,
+    "maxEmailsPerDay": 6,
+    "minPauseBetweenEmailsMs": 4000,
+    "maxPauseBetweenEmailsMs": 8000
+  }
+}
