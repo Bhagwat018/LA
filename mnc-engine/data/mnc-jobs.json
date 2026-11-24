@@ -1103,5 +1103,30 @@
     "applied": false,
     "appliedDate": null,
     "firstDiscoveredDate": "2026-11-24"
+  },
+  {
+    "id": "mongodb-8083366",
+    "company": "MongoDB",
+    "category": "Global Database Platform MNC",
+    "ats": "greenhouse",
+    "sourcePortal": "mongodb",
+    "title": "Software Engineer 3",
+    "location": "Gurugram",
+    "directApplyUrl": "https://www.mongodb.com/careers/job/?gh_jid=8083366",
+    "descriptionSnippet": "",
+    "postedAt": "2026-11-23T09:29:00-05:00",
+    "discoveredAt": "2026-11-24T11:45:57.063Z",
+    "estSalary": "₹20 - ₹38 LPA",
+    "matchScore": 70,
+    "matchedSkills": [],
+    "whyFit": [
+      "Matches **KickScore** and modern Next.js/React frontend architecture with 3+ years scale experience."
+    ],
+    "quickPitch": "I am a Senior Mobile & Full-Stack Developer with 3+ years of production experience building high-performance systems with React Native, React.js, Next.js, and Node.js. Notably, I engineered KickScore (scaling to 100k+ users with Hermes & WebSockets) and built enterprise native bridges for the TruVideo Automotive SDK. Given my background in end-to-end fullstack development and performance tuning, I would love to contribute to MongoDB's engineering team.",
+    "hubBadge": "Delhi NCR Hub",
+    "expMatch": "2–5 Years (Matches Gopal's 3+ Yrs Exp)",
+    "applied": false,
+    "appliedDate": null,
+    "firstDiscoveredDate": "2026-11-24"
   }
 ]

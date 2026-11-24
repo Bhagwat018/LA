@@ -120,7 +120,7 @@
 | 4 | **Senior Software Engineer, AI Builder Experience (ABX)** | MongoDB | Gurugram | **₹20 - ₹38 LPA** | [Direct Apply Link](https://www.mongodb.com/careers/job/?gh_jid=8106099) | [ ] Applied |
 | 5 | **Senior Software Engineer, AI Framework Integrations** | MongoDB | Gurugram | **₹20 - ₹38 LPA** | [Direct Apply Link](https://www.mongodb.com/careers/job/?gh_jid=8107301) | [ ] Applied |
 | 6 | **Senior Software Engineer (Enterprise Advanced)** | MongoDB | Gurugram | **₹20 - ₹38 LPA** | [Direct Apply Link](https://www.mongodb.com/careers/job/?gh_jid=8358101) | [ ] Applied |
-| 7 | **Software Engineer 3** | MongoDB | Gurugram | **₹20 - ₹38 LPA** | [Direct Apply Link](https://www.mongodb.com/careers/job/?gh_jid=8239047) | [ ] Applied |
+| 7 | **Software Engineer 3** | MongoDB | Gurugram | **₹20 - ₹38 LPA** | [Direct Apply Link](https://www.mongodb.com/careers/job/?gh_jid=8083366) | [ ] Applied |
 | 8 | **Software Engineer 3, AI Framework Integrations** | MongoDB | Gurugram | **₹20 - ₹38 LPA** | [Direct Apply Link](https://www.mongodb.com/careers/job/?gh_jid=8127772) | [ ] Applied |
 | 9 | **Software Engineer 3 - Enterprise Architecture** | MongoDB | Gurugram | **₹20 - ₹38 LPA** | [Direct Apply Link](https://www.mongodb.com/careers/job/?gh_jid=8221290) | [ ] Applied |
 | 10 | **Senior Software Engineer, SSCS : Authentication** | GitLab | Bangalore, India | **₹22 - ₹45 LPA** | [Direct Apply Link](https://job-boards.greenhouse.io/gitlab/jobs/8878486002) | [ ] Applied |
