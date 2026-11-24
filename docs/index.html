@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MNC & Tech Hub Career Radar | Gopal Bhagwat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen pb-16 antialiased selection:bg-emerald-500 selection:text-white">
+
+  <!-- Mobile Top Bar -->
+  <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+          <svg class="w-5 h-5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-base font-bold tracking-tight text-white flex items-center gap-1.5">
+            MNC Career Radar
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">LIVE</span>
+          </h1>
+          <p class="text-xs text-slate-400">Gopal Bhagwat • Full-Stack & Mobile</p>
+        </div>
+      </div>
+      <div class="text-right">
+        <span id="header-date" class="text-[11px] font-semibold text-slate-400 block">Loading...</span>
+        <span class="text-[10px] text-emerald-400 font-medium">Min ₹7–8 LPA Floor</span>
+      </div>
+    </div>
+
+    <!-- Tab Bar -->
+    <div class="max-w-4xl mx-auto px-4 pt-1 flex border-t border-slate-800/80 space-x-2">
+      <button onclick="switchTab('new')" id="tab-new" class="flex-1 py-2.5 text-xs font-semibold border-b-2 border-emerald-400 text-emerald-400 flex items-center justify-center gap-1.5 transition-colors">
+        🔥 New Matches
+        <span id="badge-new" class="px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 rounded-full text-[10px] font-bold">0</span>
+      </button>
+      <button onclick="switchTab('applied')" id="tab-applied" class="flex-1 py-2.5 text-xs font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5 transition-colors">
+        ✅ Applied
+        <span id="badge-applied" class="px-1.5 py-0.2 bg-slate-800 text-slate-300 rounded-full text-[10px] font-bold">0</span>
+      </button>
+      <button onclick="switchTab('starred')" id="tab-starred" class="flex-1 py-2.5 text-xs font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5 transition-colors">
+        ⭐ Saved
+        <span id="badge-starred" class="px-1.5 py-0.2 bg-slate-800 text-slate-300 rounded-full text-[10px] font-bold">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-4xl mx-auto px-4 pt-4">
+
+    <!-- Search & Filters -->
+    <section class="bg-slate-900/60 border border-slate-800 rounded-2xl p-3.5 mb-4 shadow-sm">
+      <div class="relative mb-2.5">
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Search by role, company, or stack (e.g. React, Amazon)..." 
+          oninput="applyFilters()"
+          class="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all pl-9"
+        >
+        <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </div>
+
+      <div class="grid grid-cols-3 gap-2">
+        <select id="filter-hub" onchange="applyFilters()" class="bg-slate-950 border border-slate-800 rounded-xl px-2 py-1.5 text-[11px] text-slate-300 focus:outline-none focus:border-emerald-500">
+          <option value="">All Hubs</option>
+          <option value="bangalore">Bangalore</option>
+          <option value="pune">Pune</option>
+          <option value="hyderabad">Hyderabad</option>
+          <option value="remote">Remote</option>
+          <option value="gurgaon">Delhi NCR</option>
+          <option value="indore">Indore</option>
+        </select>
+
+        <select id="filter-stack" onchange="applyFilters()" class="bg-slate-950 border border-slate-800 rounded-xl px-2 py-1.5 text-[11px] text-slate-300 focus:outline-none focus:border-emerald-500">
+          <option value="">All Stacks</option>
+          <option value="react native">React Native</option>
+          <option value="full stack">Full-Stack</option>
+          <option value="sde">SDE-2 / SDE</option>
+          <option value="node">Node.js</option>
+          <option value="frontend">Frontend</option>
+        </select>
+
+        <select id="filter-package" onchange="applyFilters()" class="bg-slate-950 border border-slate-800 rounded-xl px-2 py-1.5 text-[11px] text-slate-300 focus:outline-none focus:border-emerald-500">
+          <option value="">Any Package</option>
+          <option value="12">₹12+ LPA</option>
+          <option value="15">₹15+ LPA</option>
+          <option value="20">₹20+ LPA</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Quick Stats Bar -->
+    <div class="flex items-center justify-between text-xs text-slate-400 mb-3 px-1">
+      <span id="results-count" class="font-medium">Showing 0 opportunities</span>
+      <span class="text-[11px] text-slate-500">1-Tap Apply & Auto-Tracks</span>
+    </div>
+
+    <!-- Jobs Card Feed -->
+    <div id="jobs-container" class="space-y-3.5">
+      <!-- Dynamically injected cards -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden text-center py-16 px-4 bg-slate-900/40 border border-slate-800/80 rounded-2xl mt-4">
+      <div class="w-12 h-12 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+      </div>
+      <h3 class="text-sm font-semibold text-white mb-1">No roles found</h3>
+      <p class="text-xs text-slate-400 max-w-xs mx-auto">Try clearing search filters or check back after tomorrow's afternoon 02:00 PM automated sync.</p>
+    </div>
+
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 font-bold px-4 py-2 rounded-full text-xs shadow-xl shadow-emerald-500/20 opacity-0 pointer-events-none transition-all duration-300 z-50 flex items-center gap-1.5">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+    </svg>
+    <span id="toast-msg">Cover pitch copied to clipboard!</span>
+  </div>
+
+  <!-- Load Jobs Data & Application Logic -->
+  <script src="jobs-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

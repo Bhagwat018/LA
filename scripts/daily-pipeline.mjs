@@ -60,13 +60,33 @@ const today = new Date().toISOString().split("T")[0];
 const todayHistory = history.filter((h) => h.contactedAt && h.contactedAt.startsWith(today));
 const unreadReplies = replies.filter((r) => r.isUnread);
 
+const leadsWithApplyLinks = leads.filter((l) => l.applyLink);
+
 const summaryReport = `
 # 📊 LinkedIn Daily Freelance Pipeline Report (${today})
 
 - **Total Active Leads in Database**: ${leads.length}
+- **Pan-India Leads with Direct Apply/Forms**: ${leadsWithApplyLinks.length}
 - **Outreach Sent Today**: ${todayHistory.length}
 - **Cumulative Prospects Contacted**: ${history.length}
 - **Unread Client Responses Waiting**: ${unreadReplies.length}
+
+## 🔗 Direct Project Application Links (Google Forms / Job Forms):
+${
+  leadsWithApplyLinks.length === 0
+    ? "_No external application links found in today's batch._"
+    : leadsWithApplyLinks
+        .map(
+          (l, i) => `
+${i + 1}. **${l.authorName}** (${l.authorHeadline || "Client/Founder"})
+   - 🚀 **Direct Apply Form**: ${l.applyLink}
+   - 🔗 **LinkedIn Profile**: ${l.authorProfile}
+   - 📝 **Requirement**: ${l.cleanExcerpt.slice(0, 160)}...
+   - ⚡ **Tech**: ${l.techStack?.join(", ") || "Full-Stack / Mobile"}
+`
+        )
+        .join("\n")
+}
 
 ## 🎯 Contacts Reached Today:
 ${

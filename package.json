@@ -13,7 +13,13 @@
     "daemon": "node scripts/scheduler.mjs",
     "schedule:install": "bash scripts/setup-launchd.sh",
     "schedule:uninstall": "bash scripts/setup-launchd.sh --uninstall",
-    "apply:jobs": "node scripts/apply-jobs.mjs"
+    "apply:jobs": "node scripts/apply-jobs.mjs",
+    "mnc:hunt": "node mnc-engine/scripts/mnc-hunter.mjs",
+    "mnc:score": "node mnc-engine/scripts/mnc-match-scorer.mjs",
+    "mnc:daily": "node mnc-engine/scripts/mnc-daily-pipeline.mjs",
+    "mnc:sync": "bash scripts/mnc-auto-sync.sh",
+    "mnc:schedule:install": "bash scripts/setup-mnc-launchd.sh",
+    "mnc:schedule:uninstall": "bash scripts/setup-mnc-launchd.sh --uninstall"
   },
   "keywords": [
     "linkedin",

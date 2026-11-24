@@ -1,32 +1,172 @@
 [
   {
     "id": "lead-1794828867591-1",
-    "authorName": "Hiring Lead",
+    "authorName": "Hiring Lead (Riya Singh)",
     "authorProfile": "https://www.linkedin.com/in/riya-singh-795b19399/",
     "email": "riya.singh@karyanest.in",
-    "status": "PROFILE_FOLLOW_ONLY_OR_CONNECTED",
-    "method": "LINKEDIN",
-    "pitchSent": "Hi Hiring, saw your post for a react developer. I'm a Senior Mobile & Full-Stack Engineer (3+ yrs, 4 production apps, React Native/Web/iOS/Android). Available immediately on contract/milestone. Would love to connect and share live apps!",
-    "contactedAt": "2026-11-16T11:36:22.748Z"
+    "status": "EMAIL_SENT",
+    "method": "EMAIL",
+    "pitchSent": "Direct proposal email sent for react, javascript, react native, mobile freelance requirement",
+    "contactedAt": "2026-11-16T12:02:18.856Z"
   },
   {
     "id": "lead-1794827056516-1",
     "authorName": "Urvashi Relwani",
     "authorProfile": "https://www.linkedin.com/in/urvashi-relwani-abb684209/",
     "email": "urvashi.relwani@girnarsoft.com",
-    "status": "PROFILE_FOLLOW_ONLY_OR_CONNECTED",
-    "method": "LINKEDIN",
-    "pitchSent": "Hi Urvashi, saw your post for a power platform developer. I'm a Senior Mobile & Full-Stack Engineer (3+ yrs, 4 production apps, React Native/Web/iOS/Android). Available immediately on contract/milestone. Would love to connect and share live apps!",
-    "contactedAt": "2026-11-16T11:36:35.969Z"
+    "status": "EMAIL_SENT",
+    "method": "EMAIL",
+    "pitchSent": "Direct proposal email sent for power platform, developer, freelance freelance requirement",
+    "contactedAt": "2026-11-16T12:02:27.097Z"
   },
   {
     "id": "lead-1794827114183-2",
     "authorName": "Anand Yadav",
     "authorProfile": "https://www.linkedin.com/in/anand-yadav-469109244/",
     "email": "anand.y@jconnectinc.com",
-    "status": "PROFILE_FOLLOW_ONLY_OR_CONNECTED",
-    "method": "LINKEDIN",
-    "pitchSent": "Hi Anand, saw your post for a contract developer. I'm a Senior Mobile & Full-Stack Engineer (3+ yrs, 4 production apps, React Native/Web/iOS/Android). Available immediately on contract/milestone. Would love to connect and share live apps!",
-    "contactedAt": "2026-11-16T11:36:50.420Z"
+    "status": "EMAIL_SENT",
+    "method": "EMAIL",
+    "pitchSent": "Direct proposal email sent for contract, remote, developer freelance requirement",
+    "contactedAt": "2026-11-16T12:02:36.783Z"
+  },
+  {
+    "id": "lead-1794919806085-1",
+    "authorName": "Faizullah Faiz (LOOY)",
+    "authorProfile": "https://www.linkedin.com/in/faizullahfaiz/",
+    "email": "hr@looy.io",
+    "status": "EMAIL_SENT",
+    "method": "EMAIL",
+    "pitchSent": "Direct proposal email sent for part-time React Native Developer at LOOY",
+    "contactedAt": "2026-11-17T12:53:16.145Z"
+  },
+  {
+    "id": "lead-1795013041680-1",
+    "authorName": "Deva Ram Patel",
+    "authorProfile": "https://www.linkedin.com/in/deva-ram-patel/",
+    "email": null,
+    "status": "SENT_CONNECTION_NOTE",
+    "method": "LINKEDIN_NOTE",
+    "pitchSent": "Hi Deva, saw your post for a freelance mobile developer. I am a Senior React Native Engineer (3+ yrs, 4 production apps, 100K+ users). Available immediately. Would love to connect!",
+    "contactedAt": "2026-11-24T09:22:00.000Z"
+  },
+  {
+    "id": "lead-1795090146041-3",
+    "authorName": "Vishnu Vardhan",
+    "authorProfile": "https://www.linkedin.com/in/vishnu-vardhan-7b752837/",
+    "email": "vishnu@hrfootprints.com",
+    "status": "EMAIL_SENT",
+    "method": "EMAIL",
+    "pitchSent": "Direct proposal email sent for ReactJS & API freelance/contract requirement to vishnu@hrfootprints.com",
+    "contactedAt": "2026-11-24T09:30:00.000Z"
+  },
+  {
+    "id": "lead-1795090146041-3",
+    "authorName": "Vishnu Vardhan",
+    "authorProfile": "https://www.linkedin.com/in/vishnu-vardhan-7b752837/",
+    "email": "vishnu@hrfootprints.com",
+    "status": "SENT_CONNECTION_NOTE",
+    "method": "LINKEDIN_NOTE",
+    "pitchSent": "Hi Vishnu, saw your post for ReactJS/API dev. I am a Sr Mobile & Full-Stack Engineer (3+ yrs, 100k+ users). Available immediately for contract work. Let us connect! - Gopal",
+    "contactedAt": "2026-11-24T09:35:00.000Z"
+  },
+  {
+    "id": "lead-1795075530028-3",
+    "authorName": "Indrani Mallick",
+    "authorProfile": "https://www.linkedin.com/in/indrani-mallick-788075396/",
+    "email": "priya@technology-next.com",
+    "status": "SENT_CONNECTION_NOTE",
+    "method": "LINKEDIN_NOTE",
+    "pitchSent": "Hi Indrani, saw your post for Technology Next IT roles. I am a Sr Mobile & Full-Stack Dev (3+ yrs, 4 apps, 100k+ users). Available immediately on contract. Let us connect! - Gopal",
+    "contactedAt": "2026-11-24T09:46:00.000Z"
+  },
+  {
+    "id": "lead-1795075530028-3",
+    "authorName": "Indrani Mallick (Technology Next)",
+    "authorProfile": "https://www.linkedin.com/in/indrani-mallick-788075396/",
+    "email": "priya@technology-next.com",
+    "status": "EMAIL_SENT",
+    "method": "EMAIL",
+    "pitchSent": "Direct proposal email sent for Technology Next open IT software developer roles to priya@technology-next.com",
+    "contactedAt": "2026-11-24T09:46:30.000Z"
+  },
+  {
+    "id": "lead-1795013134547-2",
+    "authorName": "Sharma Sharma",
+    "authorProfile": "https://www.linkedin.com/in/sharma-sharma-bb7853343/",
+    "email": "sheelu@talent-arabia.com",
+    "status": "SENT_CONNECT_NO_NOTE",
+    "method": "LINKEDIN_CONNECT",
+    "pitchSent": "Connection invitation sent directly on LinkedIn (Talent Arabia Technical Recruiter)",
+    "contactedAt": "2026-11-24T09:48:00.000Z"
+  },
+  {
+    "id": "lead-1795013134547-2",
+    "authorName": "Sharma Sharma (Talent Arabia)",
+    "authorProfile": "https://www.linkedin.com/in/sharma-sharma-bb7853343/",
+    "email": "sheelu@talent-arabia.com",
+    "status": "EMAIL_SENT",
+    "method": "EMAIL",
+    "pitchSent": "Direct proposal email sent for Talent Arabia technical development roles to sheelu@talent-arabia.com",
+    "contactedAt": "2026-11-24T09:48:30.000Z"
+  },
+  {
+    "id": "lead-1795013478389-3",
+    "authorName": "Gani Lakshmi",
+    "authorProfile": "https://www.linkedin.com/in/gani-lakshmi-9b69912b3/",
+    "email": null,
+    "status": "SENT_CONNECT_NO_NOTE",
+    "method": "LINKEDIN_CONNECT",
+    "pitchSent": "Connection invitation sent directly on LinkedIn (Lovas IT Technical Recruiter)",
+    "contactedAt": "2026-11-24T09:49:00.000Z"
+  },
+  {
+    "id": "lead-1794902424919-1",
+    "authorName": "Roshni Dangara",
+    "authorProfile": "https://www.linkedin.com/in/roshni-dangara-207379264/",
+    "email": null,
+    "status": "SENT_CONNECT_NO_NOTE",
+    "method": "LINKEDIN_CONNECT",
+    "pitchSent": "Connection invitation sent directly on LinkedIn (Pulse Job Co-Founder)",
+    "contactedAt": "2026-11-24T09:50:00.000Z"
+  },
+  {
+    "id": "lead-1794919806085-1",
+    "authorName": "Faizullah Faiz",
+    "authorProfile": "https://www.linkedin.com/in/faizullahfaiz/",
+    "email": "hr@looy.io",
+    "status": "SENT_CONNECT_NO_NOTE",
+    "method": "LINKEDIN_CONNECT",
+    "pitchSent": "Connection invitation sent directly on LinkedIn (Founder & CEO @ LOOY)",
+    "contactedAt": "2026-11-24T09:52:00.000Z"
+  },
+  {
+    "id": "lead-1794828867591-1",
+    "authorName": "Riya Singh",
+    "authorProfile": "https://www.linkedin.com/in/riya-singh-795b19399/",
+    "email": "riya.singh@karyanest.in",
+    "status": "SENT_CONNECT_NO_NOTE",
+    "method": "LINKEDIN_CONNECT",
+    "pitchSent": "Connection invitation sent directly on LinkedIn (HR Executive @ KaryaNest)",
+    "contactedAt": "2026-11-24T09:53:00.000Z"
+  },
+  {
+    "id": "lead-1794827056516-1",
+    "authorName": "Urvashi Relwani",
+    "authorProfile": "https://www.linkedin.com/in/urvashi-relwani-abb684209/",
+    "email": "urvashi.relwani@girnarsoft.com",
+    "status": "SENT_CONNECT_NO_NOTE",
+    "method": "LINKEDIN_CONNECT",
+    "pitchSent": "Connection invitation sent directly on LinkedIn (IT Recruiter @ GirnarSoft)",
+    "contactedAt": "2026-11-24T09:55:00.000Z"
+  },
+  {
+    "id": "lead-1794827114183-2",
+    "authorName": "Anand Yadav",
+    "authorProfile": "https://www.linkedin.com/in/anand-yadav-469109244/",
+    "email": "anand.y@jconnectinc.com",
+    "status": "SENT_CONNECT_NO_NOTE",
+    "method": "LINKEDIN_CONNECT",
+    "pitchSent": "Connection invitation sent directly on LinkedIn (Talent Acquisition @ Jconnect)",
+    "contactedAt": "2026-11-24T09:55:50.000Z"
   }
 ]

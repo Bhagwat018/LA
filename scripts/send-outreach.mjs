@@ -5,6 +5,7 @@ import nodemailer from "nodemailer";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { generateAIPitch } from "./ai-pitch-generator.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,15 +35,23 @@ const profile = fs.existsSync(profilePath)
 
 const contactedProfiles = new Set(
   history
-    .filter((h) => h.method && h.method.startsWith("LINKEDIN") && h.status && !h.status.startsWith("FAILED"))
+    .filter(
+      (h) =>
+        h.method &&
+        h.method.startsWith("LINKEDIN") &&
+        (h.status === "SENT_CONNECTION_NOTE" ||
+          h.status === "SENT_DIRECT_MESSAGE" ||
+          h.status === "SENT_CONNECT_NO_NOTE" ||
+          h.status === "INVITATION_PENDING")
+    )
     .map((h) => h.authorProfile)
 );
 const contactedEmails = new Set(
   history.filter((h) => h.method === "EMAIL" && h.status === "EMAIL_SENT").map((h) => h.email)
 );
 
-const MAX_OUTREACH_PER_RUN = parseInt(process.env.MAX_OUTREACH_PER_RUN || "5", 10);
-const MAX_EMAILS_PER_RUN = parseInt(process.env.MAX_EMAILS_PER_RUN || "5", 10);
+const MAX_OUTREACH_PER_RUN = parseInt(process.env.MAX_OUTREACH_PER_RUN || "10", 10);
+const MAX_EMAILS_PER_RUN = parseInt(process.env.MAX_EMAILS_PER_RUN || "10", 10);
 const IS_HEADLESS = process.env.HEADLESS !== "false";
 
 console.log("\n=======================================================");
@@ -82,39 +91,20 @@ function getEmailTransporter() {
 }
 
 async function sendEmailPitch(transporter, lead) {
-  const firstName = lead.authorName.split(" ")[0] || "there";
-  const techStackStr = lead.techStack && lead.techStack.length > 0
-    ? lead.techStack.slice(0, 3).join(", ")
-    : "React Native & Full-Stack";
+  // Understand the client's requirement deeply and craft matching proposal with Gemini
+  const aiPitch = await generateAIPitch(lead);
+  console.log(`   🧠 [Gemini Requirement Analysis]: ${aiPitch.clientNeedSummary}`);
+  console.log(`   🎯 [Selected Resume Match]: ${aiPitch.selectedProjectProof}`);
 
   const mailOptions = {
     from: process.env.FROM_EMAIL || process.env.SMTP_USER,
     to: lead.email,
-    subject: `Senior React Native & Full-Stack Engineer for your ${techStackStr} role - Gopal Bhagwat`,
-    text: `Hi ${firstName},
-
-I came across your post on LinkedIn looking for a ${techStackStr} developer.
-
-I'm a Mobile & Full-Stack Engineer with 3+ years of experience delivering 4+ production apps across iOS, Android, and Web (React Native, React.js, Next.js, TypeScript, Kotlin, Java).
-
-Key Highlights from my background:
-• Delivered 4 production apps on App Store & Google Play (including KickScore for 100K+ users)
-• TruVideo Automotive SDK: Turbo Modules, native bridging (Kotlin/Swift), and real-time streaming
-• In-App Purchases (StoreKit/Google Play), offline-first SQLite architectures, and AWS IVS / Agora SDK
-• Published open-source React Native NPM packages (react-native-responsive-layout-kit)
-• Recipient of Code Commander Award 2025
-
-GitHub & Portfolio: https://github.com/Bhagwat018
-Contact: +91 6267957589 | gopalbhagwat21@gmail.com
-
-I am available immediately on a milestone or contract basis. If you're open to a brief chat, I'd love to learn more about your scope and share relevant live app demos.
-
-Best regards,
-Gopal Bhagwat
-Senior Mobile & Full-Stack Engineer`,
+    subject: aiPitch.emailSubject,
+    text: aiPitch.emailBody,
   };
 
   await transporter.sendMail(mailOptions);
+  return aiPitch;
 }
 
 const emailRulesPath = path.join(rootDir, "config", "email-rules.json");
@@ -254,102 +244,186 @@ async function runOutreach() {
 
         let outreachStatus = "SKIPPED";
         let outreachMethod = "LINKEDIN";
+        let actionTaken = false;
 
-        const firstName = lead.authorName.split(" ")[0] || "there";
-        const techKeyword = lead.techStack && lead.techStack.length > 0 ? lead.techStack[0] : "Mobile/React Native";
-        let noteText = `Hi ${firstName}, saw your post for a ${techKeyword} developer. I'm a Senior Mobile & Full-Stack Engineer (3+ yrs, 4 production apps, React Native/Web/iOS/Android). Available immediately on contract/milestone. Would love to connect and share live apps!`;
-        if (noteText.length > 295) {
-          noteText = noteText.slice(0, 292) + "...";
+        // Analyze requirement and generate AI tailored pitch
+        const firstName = (lead.authorName || "there").split(" ")[0];
+        const techKeyword = (lead.techStack && lead.techStack[0]) || "mobile";
+        let noteText = lead.linkedInNote;
+        if (!noteText) {
+          try {
+            const aiPitch = await generateAIPitch(lead);
+            noteText = aiPitch.linkedInNote;
+          } catch {}
+        }
+        if (!noteText) {
+          noteText = `Hi ${firstName}, saw your post for a ${techKeyword} developer. I am a Sr Mobile Engineer (3+ yrs, 4 apps, 100k+ users). Available immediately on contract. Let's connect!`;
+        }
+        if (noteText.length > 190) {
+          noteText = noteText.slice(0, 187) + "...";
         }
 
-        const directConnectBtn = page.locator("button:has-text('Connect'), button[aria-label*='Invite'][aria-label*='to connect']").first();
-        const moreBtn = page.locator("button:has-text('More'), button[aria-label*='More actions']").first();
-        const directMessageBtn = page.locator("button.artdeco-button--primary:has-text('Message')").first();
+        // Check if connection invitation is already pending
+        const pendingBtn = page.locator("main section button:has-text('Pending'), main button:has-text('Pending'), button[aria-label*='Pending']").first();
+        if (await pendingBtn.count() > 0 && await pendingBtn.isVisible({ timeout: 1500 })) {
+          console.log(`ℹ️ Connection request to ${lead.authorName} is already Pending.`);
+          outreachStatus = "INVITATION_PENDING";
+          outreachMethod = "LINKEDIN_NOTE";
+          actionTaken = true;
+        }
 
-        let actionTaken = false;
-        let connectClicked = false;
-
-        // Step 1: Look for Direct Connect button
-        if (await directConnectBtn.count() > 0 && await directConnectBtn.isVisible({ timeout: 2500 })) {
-          console.log("👉 Found 'Connect' button. Clicking...");
-          await directConnectBtn.click({ timeout: 5000 });
-          connectClicked = true;
-          await page.waitForTimeout(2000);
-        } else if (await moreBtn.count() > 0 && await moreBtn.isVisible({ timeout: 2500 })) {
-          // Step 2: Check inside 'More' dropdown
-          console.log("👉 Checking 'More' dropdown for Connect option...");
-          await moreBtn.click();
-          await page.waitForTimeout(1000);
-
-          const moreConnectItem = page.locator(
-            "div.artdeco-dropdown__content span:has-text('Connect'), div[role='menu'] span:has-text('Connect'), div[role='menuitem']:has-text('Connect'), div.artdeco-dropdown__item:has-text('Connect')"
-          ).first();
-
-          if (await moreConnectItem.count() > 0 && await moreConnectItem.isVisible({ timeout: 2000 })) {
-            console.log("👉 Found Connect inside 'More' menu. Clicking...");
-            await moreConnectItem.click();
-            connectClicked = true;
-            await page.waitForTimeout(2000);
+        // Step 1: Follow-First Strategy (if person has Follow enabled)
+        if (!actionTaken) {
+          const heroCard = page.locator("main section").first();
+          const followBtn = heroCard.locator("button:has-text('Follow'), button[aria-label*='Follow']").first();
+          if (await followBtn.count() > 0 && await followBtn.isVisible({ timeout: 2000 })) {
+            const btnText = (await followBtn.innerText()).trim();
+            if (btnText.includes("Follow") && !btnText.includes("Following")) {
+              console.log(`👉 [Follow-First Rule] Profile has 'Follow' enabled. Following ${lead.authorName} first...`);
+              try {
+                await followBtn.click({ timeout: 4000 });
+                await page.waitForTimeout(2000);
+                console.log(`   ✅ Followed ${lead.authorName}!`);
+              } catch (e) {
+                console.log("   ℹ️ Follow click skipped:", e.message);
+              }
+            }
           }
         }
 
-        // Step 3: Handle the Connect modal (Add a note or send)
+        // Step 2: Look for Connect button (inside heroCard direct OR inside hero More dropdown)
+        let connectClicked = false;
+
+        if (!actionTaken) {
+          // 1. Try evaluate click on direct Connect button or anchor (bypasses inert/overlay)
+          const directClicked = await page.evaluate(() => {
+            const el = document.querySelector("a[aria-label*='to connect'], button[aria-label*='to connect'], a[href*='custom-invit']");
+            if (el) {
+              el.click();
+              return true;
+            }
+            return false;
+          });
+
+          if (directClicked) {
+            console.log("👉 Found direct 'Connect' option. Clicked successfully.");
+            connectClicked = true;
+            await page.waitForTimeout(2000);
+          } else {
+            // 2. Try hero More button dropdown
+            const heroCard = page.locator("main section").first();
+            const heroMoreBtn = heroCard.locator("button[aria-label='More'], button[aria-label*='More actions']").first();
+
+            if (await heroMoreBtn.count() > 0 && await heroMoreBtn.isVisible({ timeout: 2000 })) {
+              console.log("👉 Opening hero 'More' menu to access Connect option...");
+              await heroMoreBtn.click();
+              await page.waitForTimeout(1500);
+
+              const moreConnectItem = page.locator(
+                "div[role='menu'] span:has-text('Connect'), div.artdeco-dropdown__content span:has-text('Connect'), div[role='menu'] div:has-text('Connect')"
+              ).first();
+
+              if (await moreConnectItem.count() > 0 && await moreConnectItem.isVisible({ timeout: 2500 })) {
+                console.log("👉 Found Connect in 'More' menu. Clicking...");
+                await moreConnectItem.click();
+                connectClicked = true;
+                await page.waitForTimeout(2000);
+              }
+            }
+          }
+        }
+
+        // Step 3: Handle the Invitation Note modal
         if (connectClicked) {
+          // Check if "How do you know" modal appears
+          const otherOption = page.locator("button:has-text('Other'), div:has-text('We know each other')").first();
+          if (await otherOption.count() > 0 && await otherOption.isVisible({ timeout: 1500 })) {
+            await otherOption.click().catch(() => {});
+            const connectSubBtn = page.locator("button:has-text('Connect')").first();
+            if (await connectSubBtn.isVisible()) await connectSubBtn.click().catch(() => {});
+            await page.waitForTimeout(1500);
+          }
+
           const addNoteBtn = page.locator("button:has-text('Add a note'), button[aria-label*='Add a note']").first();
-          if (await addNoteBtn.count() > 0 && await addNoteBtn.isVisible({ timeout: 3000 })) {
-            console.log("📝 Adding personalized pitch note...");
+          if (await addNoteBtn.count() > 0 && await addNoteBtn.isVisible({ timeout: 2500 })) {
+            console.log("📝 Adding personalized pitch note (limit <= 190 chars)...");
             await addNoteBtn.click();
             await page.waitForTimeout(1000);
 
-            const textarea = page.locator("textarea[name='message'], textarea#custom-message").first();
+            const textarea = page.locator("textarea[name='message'], textarea#custom-message, textarea").first();
             await textarea.click();
-            await page.keyboard.type(noteText, { delay: 20 });
+            await textarea.fill(noteText);
             await page.waitForTimeout(1000);
 
-            const sendBtn = page.locator("button:has-text('Send'), button[aria-label*='Send invitation']").first();
-            await sendBtn.click();
-            outreachStatus = "SENT_CONNECTION_NOTE";
-            outreachMethod = "LINKEDIN_NOTE";
-            actionTaken = true;
-            console.log("✅ Personalized connection invitation sent successfully!");
-          } else {
+            const sendBtn = page.locator("button:has-text('Send'), button[aria-label*='Send invitation'], button[aria-label*='Send now']").first();
+            if (await sendBtn.isEnabled()) {
+              await sendBtn.click();
+              await page.waitForTimeout(2500);
+              outreachStatus = "SENT_CONNECTION_NOTE";
+              outreachMethod = "LINKEDIN_NOTE";
+              actionTaken = true;
+              console.log("✅ Personalized connection invitation note sent successfully!");
+            } else {
+              console.log("⚠️ Send button with note disabled (e.g. note limit reached). Attempting Send without note...");
+              const cancelBtn = page.locator("button:has-text('Cancel')").first();
+              if (await cancelBtn.isVisible()) await cancelBtn.click().catch(() => {});
+              await page.waitForTimeout(1000);
+            }
+          }
+
+          // If note wasn't sent, fallback to Send without note (unlimited connection channel)
+          if (!actionTaken) {
             const sendWithoutNoteBtn = page.locator(
               "button:has-text('Send without a note'), button[aria-label*='Send without a note'], button.artdeco-modal button:has-text('Send')"
             ).first();
-            if (await sendWithoutNoteBtn.count() > 0 && await sendWithoutNoteBtn.isVisible()) {
+            if (await sendWithoutNoteBtn.count() > 0 && await sendWithoutNoteBtn.isVisible({ timeout: 2000 })) {
               await sendWithoutNoteBtn.click();
+              await page.waitForTimeout(2500);
               outreachStatus = "SENT_CONNECT_NO_NOTE";
               outreachMethod = "LINKEDIN_CONNECT";
               actionTaken = true;
-              console.log("✅ Sent connection request directly.");
+              console.log("✅ Sent connection request directly (unlimited connection channel).");
             }
+          }
+
+          // Capture proof screenshot
+          if (actionTaken) {
+            try {
+              const logsDir = path.join(rootDir, "logs");
+              if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir, { recursive: true });
+              await page.screenshot({ path: path.join(logsDir, `connect-sent-${lead.id}.png`) });
+            } catch {}
           }
         }
 
-        // Step 4: If not connected or connect not available, check Direct Message
-        if (!actionTaken && await directMessageBtn.count() > 0 && await directMessageBtn.isVisible({ timeout: 2500 })) {
-          console.log("💬 1st Degree Connection detected. Checking message box...");
-          try {
-            await directMessageBtn.click({ timeout: 5000 });
-            await page.waitForTimeout(2000);
+        // Step 4: If not connected yet, try Direct Message link/button
+        if (!actionTaken) {
+          const msgElement = page.locator("main section a[href*='messaging/compose'], main section button:has-text('Message'), main button:has-text('Message')").first();
+          if (await msgElement.count() > 0 && await msgElement.isVisible({ timeout: 2000 })) {
+            console.log("💬 Checking Message option...");
+            try {
+              await msgElement.click({ timeout: 4000 });
+              await page.waitForTimeout(2000);
 
-            const msgBox = page.locator("div.msg-form__contenteditable[contenteditable='true']").first();
-            if (await msgBox.count() > 0 && await msgBox.isVisible({ timeout: 3000 })) {
-              await msgBox.click({ force: true });
-              await page.keyboard.type(lead.tailoredPitch || noteText, { delay: 20 });
-              await page.waitForTimeout(1000);
+              const msgBox = page.locator("div.msg-form__contenteditable[contenteditable='true']").first();
+              if (await msgBox.count() > 0 && await msgBox.isVisible({ timeout: 3000 })) {
+                await msgBox.click({ force: true });
+                await page.keyboard.type(lead.tailoredPitch || noteText, { delay: 20 });
+                await page.waitForTimeout(1000);
 
-              const sendMsgBtn = page.locator("button.msg-form__send-button").first();
-              if (await sendMsgBtn.count() > 0 && await sendMsgBtn.isEnabled()) {
-                await sendMsgBtn.click({ force: true });
-                outreachStatus = "SENT_DIRECT_MESSAGE";
-                outreachMethod = "LINKEDIN_DM";
-                actionTaken = true;
-                console.log("✅ Direct message sent successfully!");
+                const sendMsgBtn = page.locator("button.msg-form__send-button").first();
+                if (await sendMsgBtn.count() > 0 && await sendMsgBtn.isEnabled()) {
+                  await sendMsgBtn.click({ force: true });
+                  await page.waitForTimeout(2500);
+                  outreachStatus = "SENT_DIRECT_MESSAGE";
+                  outreachMethod = "LINKEDIN_DM";
+                  actionTaken = true;
+                  console.log("✅ Direct message sent successfully!");
+                }
               }
+            } catch (e) {
+              console.log("ℹ️ Message box not interactive:", e.message);
             }
-          } catch (e) {
-            console.log("ℹ️ Direct message box not accessible:", e.message);
           }
         }
 
@@ -358,7 +432,8 @@ async function runOutreach() {
           outreachStatus = "PROFILE_FOLLOW_ONLY_OR_CONNECTED";
         }
 
-        history.push({
+        const existingIdx = history.findIndex((h) => h.id === lead.id && h.method && h.method.startsWith("LINKEDIN"));
+        const outreachRecord = {
           id: lead.id,
           authorName: lead.authorName,
           authorProfile: lead.authorProfile,
@@ -367,7 +442,13 @@ async function runOutreach() {
           method: outreachMethod,
           pitchSent: noteText,
           contactedAt: new Date().toISOString(),
-        });
+        };
+
+        if (existingIdx !== -1) {
+          history[existingIdx] = outreachRecord;
+        } else {
+          history.push(outreachRecord);
+        }
         fs.writeFileSync(historyPath, JSON.stringify(history, null, 2), "utf-8");
 
         const randomPause = Math.floor(Math.random() * 5000) + 5000;

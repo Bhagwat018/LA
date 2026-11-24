@@ -1,0 +1,154 @@
+{
+  "portals": [
+    {
+      "id": "cred",
+      "company": "CRED",
+      "category": "Bangalore Product Tech & Fintech Unicorn",
+      "ats": "lever",
+      "token": "cred",
+      "apiUrl": "https://api.lever.co/v0/postings/cred?mode=json",
+      "hubLocations": ["Bangalore", "Remote"],
+      "defaultEstSalary": "₹16 - ₹32 LPA"
+    },
+    {
+      "id": "inmobi",
+      "company": "InMobi",
+      "category": "Bangalore AdTech & Mobile Unicorn",
+      "ats": "greenhouse",
+      "token": "inmobi",
+      "apiUrl": "https://boards-api.greenhouse.io/v1/boards/inmobi/jobs",
+      "hubLocations": ["Bangalore"],
+      "defaultEstSalary": "₹14 - ₹26 LPA"
+    },
+    {
+      "id": "groww",
+      "company": "Groww",
+      "category": "Bangalore Fintech Unicorn",
+      "ats": "greenhouse",
+      "token": "groww",
+      "apiUrl": "https://boards-api.greenhouse.io/v1/boards/groww/jobs",
+      "hubLocations": ["Bangalore"],
+      "defaultEstSalary": "₹14 - ₹25 LPA"
+    },
+    {
+      "id": "slice",
+      "company": "Slice",
+      "category": "Bangalore Consumer Fintech Unicorn",
+      "ats": "greenhouse",
+      "token": "slice",
+      "apiUrl": "https://boards-api.greenhouse.io/v1/boards/slice/jobs",
+      "hubLocations": ["Bangalore"],
+      "defaultEstSalary": "₹13 - ₹24 LPA"
+    },
+    {
+      "id": "datadog",
+      "company": "Datadog",
+      "category": "Global Cloud & Observability MNC",
+      "ats": "greenhouse",
+      "token": "datadog",
+      "apiUrl": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs",
+      "hubLocations": ["Bangalore", "Remote"],
+      "defaultEstSalary": "₹20 - ₹40 LPA"
+    },
+    {
+      "id": "elastic",
+      "company": "Elastic",
+      "category": "Global Search & Data Tech MNC",
+      "ats": "greenhouse",
+      "token": "elastic",
+      "apiUrl": "https://boards-api.greenhouse.io/v1/boards/elastic/jobs",
+      "hubLocations": ["Bangalore", "Pune", "Remote"],
+      "defaultEstSalary": "₹18 - ₹35 LPA"
+    },
+    {
+      "id": "twilio",
+      "company": "Twilio",
+      "category": "Global Cloud Communications MNC",
+      "ats": "greenhouse",
+      "token": "twilio",
+      "apiUrl": "https://boards-api.greenhouse.io/v1/boards/twilio/jobs",
+      "hubLocations": ["Bangalore", "Remote"],
+      "defaultEstSalary": "₹18 - ₹36 LPA"
+    },
+    {
+      "id": "mongodb",
+      "company": "MongoDB",
+      "category": "Global Database Platform MNC",
+      "ats": "greenhouse",
+      "token": "mongodb",
+      "apiUrl": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs",
+      "hubLocations": ["Bangalore", "Gurgaon", "Remote"],
+      "defaultEstSalary": "₹20 - ₹38 LPA"
+    },
+    {
+      "id": "gitlab",
+      "company": "GitLab",
+      "category": "Global DevOps & Remote Tech MNC",
+      "ats": "greenhouse",
+      "token": "gitlab",
+      "apiUrl": "https://boards-api.greenhouse.io/v1/boards/gitlab/jobs",
+      "hubLocations": ["Remote"],
+      "defaultEstSalary": "₹22 - ₹45 LPA"
+    },
+    {
+      "id": "coinbase",
+      "company": "Coinbase India",
+      "category": "Global Crypto & Fintech Tech Hub",
+      "ats": "greenhouse",
+      "token": "coinbase",
+      "apiUrl": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs",
+      "hubLocations": ["Bangalore", "Remote"],
+      "defaultEstSalary": "₹24 - ₹50 LPA"
+    },
+    {
+      "id": "bosch",
+      "company": "Bosch Group India",
+      "category": "Auto, IoT & Smart Manufacturing Tech",
+      "ats": "smartrecruiters",
+      "token": "BoschGroup",
+      "apiUrl": "https://api.smartrecruiters.com/v1/companies/BoschGroup/postings?country=in&limit=100",
+      "hubLocations": ["Bangalore", "Pune", "Coimbatore"],
+      "defaultEstSalary": "₹9 - ₹18 LPA"
+    },
+    {
+      "id": "continental",
+      "company": "Continental Automotive",
+      "category": "Automotive Software & Mobility Tech",
+      "ats": "smartrecruiters",
+      "token": "Continental",
+      "apiUrl": "https://api.smartrecruiters.com/v1/companies/Continental/postings?country=in&limit=100",
+      "hubLocations": ["Bangalore", "Pune"],
+      "defaultEstSalary": "₹9 - ₹18 LPA"
+    },
+    {
+      "id": "amazon",
+      "company": "Amazon & AWS India",
+      "category": "Global E-Commerce & Cloud Tech Giant",
+      "ats": "amazon",
+      "token": "amazon",
+      "apiUrl": "https://www.amazon.jobs/en/search.json?base_query=React&country=IND&result_type=jobs&count=100",
+      "hubLocations": ["Bangalore", "Pune", "Hyderabad", "Gurgaon", "Chennai"],
+      "defaultEstSalary": "₹18 - ₹42 LPA"
+    },
+    {
+      "id": "tcs",
+      "company": "Tata Consultancy Services (TCS)",
+      "category": "IT Services & Consulting Giant",
+      "ats": "greenhouse",
+      "token": "tcs",
+      "apiUrl": "https://boards-api.greenhouse.io/v1/boards/tcs/jobs",
+      "hubLocations": ["Pan-India", "Indore", "Bangalore", "Pune"],
+      "defaultEstSalary": "₹7 - ₹14 LPA"
+    },
+    {
+      "id": "hp",
+      "company": "HP Inc.",
+      "category": "Global Hardware & Software Tech MNC",
+      "ats": "greenhouse",
+      "token": "hp",
+      "apiUrl": "https://boards-api.greenhouse.io/v1/boards/hp/jobs",
+      "hubLocations": ["Bangalore", "Chennai"],
+      "defaultEstSalary": "₹12 - ₹22 LPA"
+    }
+  ]
+}

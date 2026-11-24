@@ -1,5 +1,180 @@
 [
   {
+    "id": "lead-1795161819940-1",
+    "query": "hiring part time developer remote india",
+    "authorName": "Hiring Lead",
+    "authorHeadline": "",
+    "authorProfile": "https://www.linkedin.com/in/heather-black-salesforce-women-in-tech-speaker/",
+    "email": null,
+    "applyLink": null,
+    "techStack": [],
+    "cleanExcerpt": "Feed post Heather Black • 3rd+ CEO of Supermums - Training, Consultancy and Recruitment for Salesforce + AI + Data | Women in Tech Advocate | Golden Hoodie Winner View my newsletter 20h • Follow Supermums Recruitment is hiring for Salesforce clients. Check out the following Salesforce job roles: 🔹 Salesforce Security Analyst | London, hybrid | £55",
+    "aiAnalysis": {
+      "clientNeedSummary": "Heather Black (Supermums Recruitment) is seeking experienced software and enterprise specialists for client job openings in London and remote/hybrid setups.",
+      "selectedProjectProof": "TruVideo Automotive SDK was chosen because it showcases enterprise-grade software engineering, secure native bridging (Swift/Kotlin), and complex module development suited for high-compliance enterprise environments.",
+      "emailSubject": "Senior Mobile & Full-Stack Engineer for Supermums Clients"
+    },
+    "tailoredPitch": "Hi Heather,\n\nSaw your post regarding software development roles for Supermums' enterprise clients. \n\nIf any of your clients need a Senior Mobile/Full-Stack Engineer (React Native, iOS, Android), I can help step in immediately. I recently architected the enterprise TruVideo SDK with native Swift/Kotlin modules and optimized platforms for 100K+ users—cutting crash rates by 40%.\n\nI am available immediately on a contract basis. Feel free to review my technical work at https://github.com/Bhagwat018.\n\nWould you be open to a quick 10-minute discovery chat this week to discuss potential fits?\n\nBest regards,\nGopal Bhagwat",
+    "linkedInNote": "Hi Heather, saw your post about Supermums hiring software roles. As a Senior Mobile/Full-Stack Engineer (React Native, Swift, Kotlin) with enterprise SDK experience, I'd love to connect and support any contract app dev needs for your clients. https://github.com/Bhagwat018",
+    "discoveredAt": "2026-11-20T08:03:39.940Z"
+  },
+  {
+    "id": "lead-1795090146041-3",
+    "query": "hiring contract developer remote",
+    "authorName": "Vishnu Vardhan",
+    "authorHeadline": "• 3rd+",
+    "authorProfile": "https://www.linkedin.com/in/vishnu-vardhan-7b752837/",
+    "email": "vishnu@hrfootprints.com",
+    "applyLink": null,
+    "techStack": [
+      "api"
+    ],
+    "cleanExcerpt": "Vishnu Vardhan • 3rd+ Hiring for Sr Manager (API Sales & BD - Domestic Markets) / Associate Director - Bioassay / Head - OE / Head - Projects (Chemical Industry) / .Net (ReactJS)/ Manger - F&A / Head Manufacturing / AVP - QA / GM - Projects 1h • ",
+    "aiAnalysis": {
+      "clientNeedSummary": "Vishnu Vardhan is seeking skilled engineering talent for ReactJS and API-driven application development.",
+      "selectedProjectProof": "KickScore (Web + App) was selected because it demonstrates Gopal's expertise in React web/app development and real-time API integration for 100K+ active users.",
+      "emailSubject": "ReactJS & API Engineer | Immediate Availability for Vishnu's Team"
+    },
+    "tailoredPitch": "Hi Vishnu,\n\nI noticed your recent post hiring for ReactJS and API-focused development roles.\n\nAs a Senior Full-Stack & React Specialist with 3+ years of production experience, I specialize in building high-performance web and mobile platforms with complex API integrations. For example, I built KickScore (Web + App), an interactive platform handling real-time API feeds and chat for 100K+ users.\n\nI am available immediately on a contract or milestone basis to help plug your engineering gaps without onboarding delays. You can review my work here: https://github.com/Bhagwat018\n\nWould you be open to a quick 10-minute discovery chat this week?\n\nBest regards,\nGopal Bhagwat\n+91 6267957589",
+    "linkedInNote": "Hi Vishnu, saw your post hiring for ReactJS & API roles. I’m a Senior React Specialist available for immediate contract work. Built KickScore (React web/app for 100K+ users with real-time APIs). GitHub: https://github.com/Bhagwat018. Open to a quick chat? - Gopal",
+    "discoveredAt": "2026-11-19T12:09:06.041Z"
+  },
+  {
+    "id": "lead-1795075530028-3",
+    "query": "hiring contract developer remote",
+    "authorName": "Indrani Mallick",
+    "authorHeadline": "• 3rd+",
+    "authorProfile": "https://www.linkedin.com/in/indrani-mallick-788075396/",
+    "email": null,
+    "applyLink": null,
+    "techStack": [],
+    "cleanExcerpt": "Indrani Mallick • 3rd+ Helping Companies Hire the right talent | Human Resources Executive at Technology Next | Hiring for IT and Non-IT Roles | Specialising in Recruitment & HR Operations 12m • ",
+    "aiAnalysis": {
+      "clientNeedSummary": "Indrani Mallick is sourcing software development talent for IT roles at Technology Next.",
+      "selectedProjectProof": "KickScore (Real-time feeds, 100K+ users) and TruVideo SDK (native Kotlin/Swift bridging) prove full-stack React Native scalability and enterprise capability.",
+      "emailSubject": "Senior Mobile Engineer for Technology Next's IT Roles"
+    },
+    "tailoredPitch": "Hi Indrani,\n\nI saw your post looking for software development talent at Technology Next. As a Senior Mobile Engineer with 3+ years scaling apps to 100K+ users and shipping 4+ production apps (including the TruVideo Automotive SDK), I can help fill your mobile/full-stack tech roles immediately.\n\nI recently optimized app load times by 35% and reduced crashes by 40% using Hermes and native bridging. You can check out my work here: https://github.com/Bhagwat018\n\nI am available immediately on a contract or full-time basis. Do you have 10 minutes this week for a quick discovery chat?\n\nBest,\nGopal Bhagwat\n+91 6267957589",
+    "linkedInNote": "Hi Indrani, saw your post regarding IT recruitment at Technology Next. I'm a Senior Mobile Engineer with 3+ years experience shipping React Native apps & native SDKs to 100K+ users. Available immediately for your open tech roles. Let's connect!",
+    "discoveredAt": "2026-11-19T08:05:30.028Z"
+  },
+  {
+    "id": "lead-1795013041680-1",
+    "query": "looking for freelance react native developer",
+    "authorName": "Hiring Lead",
+    "authorHeadline": "",
+    "authorProfile": "https://www.linkedin.com/in/deva-ram-patel/",
+    "email": null,
+    "applyLink": "https://lnkd.in/dWWDcU3n",
+    "techStack": [
+      "react",
+      "flutter",
+      "react native",
+      "backend",
+      "mobile",
+      "api"
+    ],
+    "cleanExcerpt": "Feed post Deva Ram Patel • 2nd Senior SEO Executive | SEO & AI Search Specialist | AI Overview & AI Citation Optimization | GEO | Technical SEO | Local SEO | Content Optimization | Claude AI Skills Upgradation 8h • Follow 🚀 We’re Hiring – Freelance Mobile App Developer I’m looking for an experienced Freelance Mobile App Developer to work on a Mult",
+    "aiAnalysis": {
+      "clientNeedSummary": "The client is seeking an experienced freelance mobile app developer proficient in React Native/Flutter and backend API integration for a mobile project.",
+      "selectedProjectProof": "KickScore, a live sports app built for 100K+ users with real-time feeds and chat, demonstrating full-stack mobile capability.",
+      "emailSubject": "Experienced React Native Developer for your mobile project"
+    },
+    "tailoredPitch": "Hi Deva,\n\nI saw your post looking for a freelance mobile app developer skilled in React Native and backend integration. I'm Gopal Bhagwat, a Senior Mobile Engineer with 3+ years of experience delivering production apps.\n\nRecently, I built KickScore—a real-time mobile app and web platform supporting 100K+ users with live feeds and interactive chat. I also specialize in offline-first architecture, performance tuning (cutting load times by 35%), and native iOS/Android bridging.\n\nI am available for immediate contract start. You can check my work at https://github.com/Bhagwat018.\n\nAre you open to a quick 10-minute chat this week?\n\nBest,\nGopal Bhagwat",
+    "linkedInNote": "Hi Deva, saw your post for a freelance mobile developer. I'm a Senior React Native Engineer with 3+ apps in production and experience building real-time platforms for 100K+ users. I'm available immediately for your project. Let's connect!",
+    "discoveredAt": "2026-11-18T14:44:01.680Z"
+  },
+  {
+    "id": "lead-1795013134547-2",
+    "query": "urgent requirement react native developer",
+    "authorName": "Sharma Sharma",
+    "authorHeadline": "• 3rd+",
+    "authorProfile": "https://www.linkedin.com/in/sharma-sharma-bb7853343/",
+    "email": null,
+    "applyLink": null,
+    "techStack": [],
+    "cleanExcerpt": "Sharma Sharma • 3rd+ Sr. Technical Recruiter at Talent Arabia |Contract Staffing|Permanant Staffing|Hiring For UAE/Middle East/Gulf Countries/India 1d • ",
+    "aiAnalysis": {
+      "clientNeedSummary": "Freelance / contract developer for React Native / Mobile",
+      "selectedProjectProof": "KickScore (100K+ users) & 4 production apps",
+      "emailSubject": "Senior React Native & Mobile Engineer for your React Native / Mobile requirement - Gopal Bhagwat"
+    },
+    "tailoredPitch": "Hi Sharma,\n\nI came across your post looking for a React Native / Mobile developer.\n\nI'm a Senior Mobile & Full-Stack Engineer with 3+ years of experience delivering 4+ production apps across iOS, Android, and Web (React Native, React.js, Next.js, TypeScript).\n\nKey Highlights:\n• Delivered 4 production apps on App Store & Google Play (including KickScore for 100K+ users)\n• TruVideo Automotive SDK: Turbo Modules, native bridging (Kotlin/Swift), and real-time streaming\n• Awarded Code Commander Award 2025\n\nGitHub & Portfolio: https://github.com/Bhagwat018\nContact: +91 6267957589 | gopalbhagwat21@gmail.com\n\nI am available immediately on a milestone or contract basis. If you're open to a brief chat, I'd love to share relevant live app demos and discuss your scope.\n\nBest regards,\nGopal Bhagwat",
+    "linkedInNote": "Hi Sharma, saw your post for a React Native / Mobile developer. I'm a Senior Mobile Engineer (3+ yrs, 4 production apps, React Native/Web, native bridging). Available immediately on contract/milestone. Would love to connect!",
+    "discoveredAt": "2026-11-18T14:45:34.547Z"
+  },
+  {
+    "id": "lead-1795013478389-3",
+    "query": "hiring contract developer remote",
+    "authorName": "Gani Lakshmi",
+    "authorHeadline": "• 2nd",
+    "authorProfile": "https://www.linkedin.com/in/gani-lakshmi-9b69912b3/",
+    "email": null,
+    "applyLink": null,
+    "techStack": [],
+    "cleanExcerpt": "Gani Lakshmi • 2nd Talent Acquisition Specialist | IT Recruiter | Technical Sourcing & Screening | Oracle CPQ Support Experience | Hiring for Contract & Full-Time Roles. 8m • ",
+    "aiAnalysis": {
+      "clientNeedSummary": "Gani Lakshmi is seeking software development talent for contract and full-time technical roles.",
+      "selectedProjectProof": "Gopal's 3+ years of React Native and full-stack experience, highlighted by delivering 4+ production apps and building TruVideo's enterprise mobile SDK, proves his capability for immediate contract placement.",
+      "emailSubject": "Senior Mobile Engineer available for your contract software roles"
+    },
+    "tailoredPitch": "Hi Gani,\n\nI saw your post regarding software development roles. As a Senior Mobile Engineer with over 3 years of experience, I specialize in building robust React Native apps and full-stack solutions. \n\nRecently, I engineered the TruVideo Automotive SDK with native Kotlin/Swift bridging and optimized apps to cut load times by 35% and reduce crashes by 40%. I also published an open-source layout kit on NPM and hold a Code Commander Award for 2025.\n\nI am available immediately for contract roles. You can review my work at https://github.com/Bhagwat018.\n\nAre you open to a quick 10-minute discovery chat this week to discuss how I can add value to your team?\n\nBest,\nGopal Bhagwat",
+    "linkedInNote": "Hi Gani, saw your post looking for software talent. I'm a Senior Mobile Engineer with 3+ years scaling React Native apps (delivered 4+ production apps, reduced crashes by 40%). Available immediately for contract roles—let's connect!",
+    "discoveredAt": "2026-11-18T14:51:18.389Z"
+  },
+  {
+    "id": "lead-1794919806085-1",
+    "query": "\"hiring part time developer\" remote india",
+    "authorName": "Hiring Lead",
+    "authorHeadline": "",
+    "authorProfile": "https://www.linkedin.com/in/faizullahfaiz/",
+    "email": "hr@looy.io",
+    "applyLink": null,
+    "techStack": [
+      "react",
+      "typescript",
+      "python",
+      "react native",
+      "backend",
+      "mobile"
+    ],
+    "cleanExcerpt": "Feed post Faizullah Faiz • 3rd+ Founder & CEO @LOOY | build @PayBaan | SaaS, Fintech & AI Solutions | Helping Businesses Scale with Future-Driven Tech. 5mo Follow React Native Developer (Part-Time, Remote) at LOOY LOOY is a Germany-based technology company building SaaS, fintech, and AI products. We are hiring a part-time React Native Developer for",
+    "aiAnalysis": {
+      "clientNeedSummary": "LOOY is seeking a part-time remote React Native developer to help build and scale their Germany-based SaaS, fintech, and AI mobile products.",
+      "selectedProjectProof": "KickScore (Web + App) & TruVideo Automotive SDK demonstrate Gopal's ability to build production-grade, high-performance fintech/SaaS-ready mobile apps with complex real-time features and native bridging.",
+      "emailSubject": "React Native Developer (Part-Time) for LOOY"
+    },
+    "tailoredPitch": "Hi Faizullah,\n\nI saw your post looking for a part-time React Native Developer to scale LOOY's SaaS and fintech mobile products.\n\nAs a Senior Mobile Engineer, I've built and shipped 4+ production apps across iOS and Android. Recently, I built KickScore, a real-time platform for 100K+ users, and optimized app performance by cutting load times by 35% and reducing crashes by 40%.\n\nI have deep expertise in React Native, TypeScript, and native bridging (Swift/Kotlin), making me a great fit for your tech stack. I'm available for an immediate start on a contract basis.\n\nYou can review my work at https://github.com/Bhagwat018. Are you open to a quick 10-minute discovery chat this week?\n\nBest,\nGopal Bhagwat",
+    "linkedInNote": "Hi Faizullah, saw your post for the part-time React Native role at LOOY. With 3+ years shipping production React Native apps & optimizing performance by 35%, I'd love to help scale your fintech/SaaS products. Let's connect! - Gopal Bhagwat (+91 6267957589)",
+    "discoveredAt": "2026-11-17T12:50:06.085Z"
+  },
+  {
+    "id": "lead-1794902424919-1",
+    "query": "\"looking for react native developer\"",
+    "authorName": "Roshni Dangara",
+    "authorHeadline": "Co-Founder @ Pulse Job",
+    "authorProfile": "https://www.linkedin.com/in/roshni-dangara-207379264/",
+    "email": null,
+    "applyLink": "https://lnkd.in/dEqdaAN2",
+    "techStack": [
+      "react",
+      "typescript",
+      "javascript",
+      "react native",
+      "mobile",
+      "api"
+    ],
+    "cleanExcerpt": "Feed post Roshni dangara • 2nd Co-Founder @ Pulse Job | Business Administration, Management 29m Follow We are Hiring: React Native Developer Apply here: https://lnkd.in/dEqdaAN2 We’re looking for a React Native Developer to build smooth, scalable, and high-performance solutions. Experience with React Native, JavaScript, TypeScript, React.js, Redux,",
+    "aiAnalysis": {
+      "clientNeedSummary": "Pulse Job is looking for a skilled React Native Developer proficient in JavaScript, TypeScript, and Redux to build smooth, scalable mobile solutions.",
+      "selectedProjectProof": "KickScore, which involved building a high-performance cross-platform app for 100K+ users with real-time feeds and robust state management.",
+      "emailSubject": "React Native Developer for Pulse Job — Gopal Bhagwat"
+    },
+    "tailoredPitch": "Hi Roshni,\n\nI saw your post looking for a React Native Developer to build scalable, high-performance solutions for Pulse Job using JavaScript, TypeScript, and React.\n\nWith 3+ years of experience delivering 4+ production apps, I recently built KickScore—a real-time mobile and web platform handling 100K+ users. I also optimized app load times by 35% using Hermes bytecode and memoization.\n\nI'm available immediately for a contract role. You can review my work at https://github.com/Bhagwat018.\n\nAre you open to a quick 10-minute chat this week to discuss how I can help Pulse Job?\n\nBest,\nGopal Bhagwat\n+91 6267957589",
+    "linkedInNote": "Hi Roshni, saw your post for a React Native Developer at Pulse Job. I'm a Senior Mobile Engineer with 3+ years building scalable apps (e.g., KickScore for 100K+ users) using TS/JS/React Native. Available immediately. Would love to connect!",
+    "discoveredAt": "2026-11-17T08:00:24.919Z"
+  },
+  {
     "id": "lead-1794828867591-1",
     "query": "\"looking for react native developer\"",
     "authorName": "Hiring Lead",

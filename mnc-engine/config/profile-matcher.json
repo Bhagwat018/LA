@@ -1,0 +1,48 @@
+{
+  "candidate": {
+    "name": "Gopal Bhagwat",
+    "title": "Senior Mobile & Full-Stack Developer",
+    "phone": "+91 6267957589",
+    "email": "gopalbhagwat21@gmail.com",
+    "github": "https://github.com/Bhagwat018",
+    "experienceYears": 3.2,
+    "currentLocation": "Indore, India",
+    "award": "Code Commander Award 2025"
+  },
+  "skillWeights": {
+    "react-native": { "weight": 35, "aliases": ["react native", "react-native", "rn", "mobile app", "cross-platform", "ios/android", "turbo modules", "hermes"] },
+    "react": { "weight": 25, "aliases": ["react", "react.js", "reactjs", "next.js", "nextjs", "frontend", "front end", "web developer"] },
+    "fullstack": { "weight": 25, "aliases": ["fullstack", "full stack", "full-stack", "mern", "software engineer", "sde", "sde-2", "sde 2", "sde-ii"] },
+    "backend-node": { "weight": 20, "aliases": ["node.js", "nodejs", "node", "express", "expressjs", "nestjs", "rest api", "graphql", "microservices"] },
+    "typescript": { "weight": 15, "aliases": ["typescript", "ts", "javascript", "es6"] },
+    "native-bridging": { "weight": 15, "aliases": ["native bridge", "native bridging", "jsc", "hermes engine", "native module", "android sdk", "ios sdk"] },
+    "databases": { "weight": 10, "aliases": ["postgresql", "postgres", "mongodb", "sqlite", "redis", "prisma", "typeorm"] }
+  },
+  "projects": [
+    {
+      "name": "KickScore",
+      "summary": "Real-time live sports tracking mobile platform serving 100k+ active users. Engineered with React Native, WebSockets, Hermes performance optimization, and local offline caching.",
+      "relevance": ["mobile", "scale", "react-native", "performance", "websockets"]
+    },
+    {
+      "name": "TruVideo Automotive SDK",
+      "summary": "Enterprise automotive React Native native bridging library connecting native iOS/Android camera pipelines and video processing for dealership inspections.",
+      "relevance": ["native-bridging", "sdk", "enterprise", "react-native", "automotive"]
+    },
+    {
+      "name": "SaveKit",
+      "summary": "Offline-first personal finance and savings application built with React Native, SQLite, and TypeScript, featuring high-speed local data persistence.",
+      "relevance": ["offline-first", "sqlite", "typescript", "fintech", "mobile"]
+    },
+    {
+      "name": "Invoicely",
+      "summary": "Full-stack SaaS billing and invoice management platform built with Next.js, Node.js, PostgreSQL, and automated PDF invoice generation.",
+      "relevance": ["fullstack", "next.js", "node.js", "saas", "fintech"]
+    }
+  ],
+  "scoringThresholds": {
+    "superMatch": 88,
+    "highMatch": 75,
+    "moderateMatch": 60
+  }
+}

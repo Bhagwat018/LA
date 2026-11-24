@@ -1,31 +1,37 @@
 {
+  "targetRegion": "Pan-India & Global Remote (Freelance & Part-Time Work)",
+  "minimumDailyTarget": 10,
   "freelanceQueries": [
-    "looking for freelance developer",
-    "need web developer freelance",
-    "hiring part time react developer",
-    "need mobile app developer freelance",
-    "looking for full stack developer contract",
-    "developer needed for MVP",
-    "hiring freelance nodejs developer"
+    "looking for freelance react native developer",
+    "hiring freelance mobile app developer",
+    "hiring part time developer remote india",
+    "need developer for MVP remote",
+    "react developer freelance remote",
+    "urgent requirement react native developer",
+    "looking for full stack developer freelance",
+    "hiring contract developer remote",
+    "looking for freelance app developer india",
+    "hiring freelance developer remote",
+    "part time react native remote",
+    "freelance mobile developer remote"
   ],
-  "jobQueries": [
-    "Full Stack Developer Remote",
-    "React Developer Part-Time",
-    "Node.js Developer Contract",
-    "Frontend Developer Remote",
-    "Mobile Developer Freelance"
-  ],
-  "filters": {
-    "datePosted": "past-24h",
-    "experienceLevel": ["Entry level", "Associate", "Mid-Senior"],
-    "jobType": ["Contract", "Part-time", "Temporary"],
-    "workplaceType": ["Remote", "Hybrid"],
-    "easyApplyOnly": true
+  "leadProcessingRules": {
+    "followFirstIfMessageDisabled": true,
+    "extractApplicationAndFormLinks": true,
+    "supportedLinkDomains": [
+      "forms.gle",
+      "docs.google.com/forms",
+      "typeform.com",
+      "lnkd.in",
+      "airtable.com",
+      "t.ly",
+      "bit.ly"
+    ]
   },
   "safetyGuardrails": {
-    "maxApplicationsPerDay": 12,
-    "maxConnectionRequestsPerDay": 10,
+    "maxOutreachPerRun": 10,
+    "maxEmailsPerRun": 10,
     "minActionDelaySeconds": 4,
-    "maxActionDelaySeconds": 9
+    "maxActionDelaySeconds": 8
   }
 }

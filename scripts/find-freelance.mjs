@@ -1,8 +1,10 @@
 #!/usr/bin/env node
+import "dotenv/config";
 import { chromium } from "playwright";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { generateAIPitch } from "./ai-pitch-generator.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,16 +28,22 @@ console.log("💼 LinkedIn Autonomous Freelance & Contract Project Hunter");
 console.log("🎯 Searching high-intent client & founder hiring posts");
 console.log("=======================================================\n");
 
-// High-intent search queries that founders and recruiters use when they have budget
-const SEARCH_QUERIES = [
-  "\"looking for react native developer\"",
-  "\"hiring mobile developer\" freelance",
-  "\"we are hiring\" \"freelance developer\"",
-  "\"looking for freelance developer\"",
-  "\"need a developer\" MVP",
-  "\"looking for full stack developer\" freelance",
-  "\"hiring contract developer\" remote",
-  "\"need mobile app developer\" freelance"
+const searchRulesPath = path.join(rootDir, "config", "search-rules.json");
+const searchRules = fs.existsSync(searchRulesPath)
+  ? JSON.parse(fs.readFileSync(searchRulesPath, "utf-8"))
+  : null;
+
+// High-intent Pan-India search queries targeting remote and part-time freelance developers
+const SEARCH_QUERIES = searchRules?.freelanceQueries || [
+  "\"freelance developer\" remote india",
+  "\"looking for react native developer\" india",
+  "\"hiring part time developer\" remote india",
+  "\"need mobile app developer\" freelance india",
+  "\"react developer\" freelance remote india",
+  "\"looking for full stack developer\" freelance india",
+  "\"contract developer\" remote india",
+  "\"need developer for MVP\" remote india",
+  "\"hiring freelance developer\" remote"
 ];
 
 async function runHunter() {
@@ -77,10 +85,10 @@ async function runHunter() {
       await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 });
       await page.waitForTimeout(4000);
 
-      // Scroll to trigger lazy loading of fresh posts
-      for (let s = 0; s < 3; s++) {
-        await page.mouse.wheel(0, 900);
-        await page.waitForTimeout(1500);
+      // Scroll to trigger lazy loading of fresh posts (deeper scan for more opportunities)
+      for (let s = 0; s < 6; s++) {
+        await page.mouse.wheel(0, 1000);
+        await page.waitForTimeout(1200);
       }
 
       // Expand all "...more" buttons so full email / contact details are visible
@@ -148,7 +156,13 @@ async function runHunter() {
           const emailMatch = text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/i);
           const email = emailMatch ? emailMatch[0] : null;
 
-          // 3. Extract tech keywords
+          // 3. Extract Google Form / External Application Link if present
+          const linkMatch =
+            text.match(/(https?:\/\/(?:[a-zA-Z0-9_-]+\.)*(?:forms\.gle|docs\.google\.com\/forms|typeform\.com|airtable\.com|lnkd\.in|bit\.ly|t\.ly)[^\s"'>)]+)/i) ||
+            text.match(/(https?:\/\/[^\s"'>)]+(?:apply|form|job)[^\s"'>)]*)/i);
+          const applyLink = linkMatch ? linkMatch[0] : null;
+
+          // 4. Extract tech keywords
           const techStackFound = [];
           ["react", "node", "next.js", "typescript", "javascript", "python", "flutter", "react native", "android", "ios", "full stack", "frontend", "backend", "web", "mobile", "api", "mvp"].forEach(tech => {
             if (new RegExp(`\\b${tech}\\b`, "i").test(text)) {
@@ -156,11 +170,15 @@ async function runHunter() {
             }
           });
 
-          // 4. Generate high-conversion tailored proposal
-          const firstName = raw.authorName.split(" ")[0] || "there";
-          const techMention = techStackFound.length > 0 ? techStackFound.slice(0, 3).join(", ") : "React Native & Full-Stack";
-          
-          const tailoredPitch = `Hi ${firstName}, I came across your post looking for a ${techMention} developer. I'm a Senior Mobile & Full-Stack Engineer with 3+ years experience delivering 4+ production apps across iOS, Android & Web. I'm available immediately on contract/milestone basis. Would love to share relevant live projects and discuss your scope!`;
+          // 4. Understand requirement & generate AI tailored proposal using Gemini
+          const leadDraft = {
+            authorName: raw.authorName,
+            authorHeadline: raw.authorHeadline,
+            cleanExcerpt: text.replace(/\s+/g, " ").slice(0, 350),
+            techStack: techStackFound,
+          };
+
+          const aiResult = await generateAIPitch(leadDraft);
 
           const lead = {
             id: `lead-${Date.now()}-${verifiedLeads.length + 1}`,
@@ -169,15 +187,25 @@ async function runHunter() {
             authorHeadline: raw.authorHeadline,
             authorProfile: raw.authorUrl,
             email,
+            applyLink,
             techStack: techStackFound,
-            cleanExcerpt: text.replace(/\s+/g, " ").slice(0, 300),
-            tailoredPitch,
+            cleanExcerpt: text.replace(/\s+/g, " ").slice(0, 350),
+            aiAnalysis: {
+              clientNeedSummary: aiResult.clientNeedSummary,
+              selectedProjectProof: aiResult.selectedProjectProof,
+              emailSubject: aiResult.emailSubject,
+            },
+            tailoredPitch: aiResult.emailBody || aiResult.linkedInNote,
+            linkedInNote: aiResult.linkedInNote,
             discoveredAt: new Date().toISOString(),
           };
 
           verifiedLeads.push(lead);
           console.log(`   🎯 [MATCH] ${lead.authorName} (${lead.authorHeadline || "Founder/Recruiter"})`);
+          console.log(`      🧠 [AI Analysis]: ${aiResult.clientNeedSummary}`);
+          console.log(`      ⭐ [Matched Project]: ${aiResult.selectedProjectProof}`);
           if (lead.email) console.log(`      📧 Email: ${lead.email}`);
+          if (lead.applyLink) console.log(`      🔗 Application Link: ${lead.applyLink}`);
           if (lead.techStack.length > 0) console.log(`      ⚡ Tech: ${lead.techStack.join(", ")}`);
         }
       }
