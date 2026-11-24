@@ -1,5 +1,5 @@
 // docs/app.js
-// Client-side Application Logic for MNC & Tech Hub Career Radar
+// Client-side Application Logic for MNC & Tech Hub Career Radar (Professional White Theme)
 
 (function () {
   let allJobs = [];
@@ -7,7 +7,7 @@
   let appliedIds = new Set();
   let starredIds = new Set();
 
-  // Load from localStorage
+  // Load persisted state from localStorage
   function loadPersistedState() {
     try {
       const storedApplied = localStorage.getItem("mnc_applied_ids");
@@ -39,15 +39,15 @@
     if (!toast || !msg) return;
     msg.innerText = message;
     toast.classList.remove("opacity-0", "pointer-events-none");
-    toast.classList.add("opacity-100", "translate-y-[-10px]");
+    toast.classList.add("opacity-100", "translate-y-[-8px]");
 
     setTimeout(() => {
-      toast.classList.remove("opacity-100", "translate-y-[-10px]");
+      toast.classList.remove("opacity-100", "translate-y-[-8px]");
       toast.classList.add("opacity-0", "pointer-events-none");
     }, 2500);
   }
 
-  // Header Date
+  // Header Date Formatter
   function updateHeaderDate() {
     const dateEl = document.getElementById("header-date");
     if (!dateEl) return;
@@ -56,7 +56,7 @@
     dateEl.innerText = now.toLocaleDateString("en-US", options);
   }
 
-  // Tab Switching
+  // Tab Switcher
   window.switchTab = function (tab) {
     currentTab = tab;
     const tabs = ["new", "applied", "starred"];
@@ -65,11 +65,11 @@
       const btn = document.getElementById(`tab-${t}`);
       if (!btn) return;
       if (t === tab) {
-        btn.classList.add("border-emerald-400", "text-emerald-400");
-        btn.classList.remove("border-transparent", "text-slate-400");
+        btn.classList.add("border-blue-600", "text-blue-600", "font-semibold");
+        btn.classList.remove("border-transparent", "text-slate-500");
       } else {
-        btn.classList.remove("border-emerald-400", "text-emerald-400");
-        btn.classList.add("border-transparent", "text-slate-400");
+        btn.classList.remove("border-blue-600", "text-blue-600", "font-semibold");
+        btn.classList.add("border-transparent", "text-slate-500");
       }
     });
 
@@ -86,7 +86,7 @@
       window.open(job.directApplyUrl, "_blank");
     }
 
-    // Add to applied
+    // Move to applied
     appliedIds.add(id);
     savePersistedState();
     showToast(`Opening ${job.company} portal & moved to Applied tab!`);
@@ -97,7 +97,7 @@
   window.handleUnapply = function (id) {
     appliedIds.delete(id);
     savePersistedState();
-    showToast("Moved back to New Matches!");
+    showToast("Moved back to Fresh Matches!");
     updateBadges();
     renderJobs();
   };
@@ -108,7 +108,7 @@
       showToast("Removed from Saved.");
     } else {
       starredIds.add(id);
-      showToast("Saved to Starred tab! ⭐");
+      showToast("Saved to Shortlist! ⭐");
     }
     savePersistedState();
     updateBadges();
@@ -125,18 +125,18 @@
         showToast("Personalized cover pitch copied to clipboard!");
         if (btnElement) {
           const originalText = btnElement.innerHTML;
-          btnElement.innerHTML = `<span class="text-emerald-400 font-bold">Copied! ✓</span>`;
+          btnElement.innerHTML = `<span class="text-blue-700 font-bold">Copied! ✓</span>`;
           setTimeout(() => {
             btnElement.innerHTML = originalText;
           }, 2000);
         }
       })
       .catch(() => {
-        showToast("Please select and copy manually.");
+        showToast("Please copy the pitch manually.");
       });
   };
 
-  // Badges
+  // Badge Counters
   function updateBadges() {
     const newCount = allJobs.filter((j) => !appliedIds.has(j.id)).length;
     const appliedCount = appliedIds.size;
@@ -151,7 +151,7 @@
     if (bStarred) bStarred.innerText = starredCount;
   }
 
-  // Filter & Search Logic
+  // Filter & Search
   window.applyFilters = function () {
     renderJobs();
   };
@@ -163,12 +163,12 @@
     const packageVal = parseInt(document.getElementById("filter-package")?.value || "0", 10);
 
     return allJobs.filter((j) => {
-      // Tab partition
+      // Tab filter
       if (currentTab === "new" && appliedIds.has(j.id)) return false;
       if (currentTab === "applied" && !appliedIds.has(j.id)) return false;
       if (currentTab === "starred" && !starredIds.has(j.id)) return false;
 
-      // Search term
+      // Text search
       if (searchVal) {
         const fullContent = `${j.title} ${j.company} ${j.location} ${j.category} ${j.hubBadge}`.toLowerCase();
         if (!fullContent.includes(searchVal)) return false;
@@ -201,76 +201,115 @@
     });
   }
 
-  // Card HTML Renderer
+  // Company Initials & Color Helper
+  function getCompanyInitials(name) {
+    if (!name) return "CO";
+    const words = name.trim().split(/\s+/);
+    if (words.length >= 2) {
+      return (words[0][0] + words[1][0]).toUpperCase();
+    }
+    return name.slice(0, 2).toUpperCase();
+  }
+
+  function getCompanyColor(name) {
+    const colors = [
+      "from-blue-600 to-indigo-600",
+      "from-emerald-600 to-teal-600",
+      "from-amber-500 to-orange-600",
+      "from-violet-600 to-purple-600",
+      "from-rose-500 to-pink-600",
+      "from-cyan-600 to-blue-600"
+    ];
+    let hash = 0;
+    for (let i = 0; i < (name || "").length; i++) {
+      hash = name.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return colors[Math.abs(hash) % colors.length];
+  }
+
+  // Card HTML Renderer (Clean White Theme)
   function renderCard(job) {
     const isApplied = appliedIds.has(job.id);
     const isStarred = starredIds.has(job.id);
+    const initials = getCompanyInitials(job.company);
+    const avatarGradient = getCompanyColor(job.company);
 
-    // Score color styling
-    let scoreBadge = "bg-emerald-500/15 text-emerald-400 border-emerald-500/30";
+    // Score badge color
+    let scoreBadge = "bg-slate-100 text-slate-700 border-slate-200";
     if (job.matchScore >= 90) {
-      scoreBadge = "bg-emerald-500/20 text-emerald-300 border-emerald-500/40 shadow-sm shadow-emerald-500/10";
+      scoreBadge = "bg-emerald-50 text-emerald-700 border-emerald-300 font-bold shadow-xs";
     } else if (job.matchScore >= 80) {
-      scoreBadge = "bg-teal-500/15 text-teal-300 border-teal-500/30";
-    } else {
-      scoreBadge = "bg-slate-800 text-slate-300 border-slate-700";
+      scoreBadge = "bg-blue-50 text-blue-700 border-blue-200 font-bold";
     }
 
     // Why You Fit bullets
     const bulletsHtml = (job.whyFit || [])
       .map(
         (bullet) => `
-        <li class="flex items-start gap-1.5 text-[11px] text-slate-300 leading-relaxed">
-          <span class="text-emerald-400 mt-0.5">•</span>
-          <span>${bullet.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')}</span>
+        <li class="flex items-start gap-2 text-xs text-slate-600 leading-relaxed">
+          <span class="text-emerald-600 font-bold mt-0.5">✓</span>
+          <span>${bullet.replace(/\*\*(.*?)\*\*/g, '<strong class="text-slate-900 font-semibold">$1</strong>')}</span>
         </li>
       `
       )
       .join("");
 
     return `
-      <div class="bg-slate-900 border border-slate-800/90 hover:border-slate-700/80 rounded-2xl p-4 shadow-md transition-all">
-        <!-- Top Metadata Row -->
-        <div class="flex items-start justify-between gap-2 mb-2">
-          <div class="flex-1">
-            <div class="flex items-center gap-2 mb-1 flex-wrap">
-              <span class="text-[11px] font-bold px-2 py-0.5 rounded-full border ${scoreBadge}">
-                ${job.matchScore}% Match
-              </span>
-              <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2 py-0.5 rounded-md">
-                ${job.estSalary}
-              </span>
-              <span class="text-[10px] text-slate-400 bg-slate-800/60 px-2 py-0.5 rounded-md">
-                ${job.hubBadge}
-              </span>
+      <div class="bg-white border border-slate-200/90 hover:border-slate-300 hover:shadow-md rounded-2xl p-4.5 transition-all duration-200">
+        
+        <!-- Header: Company & Badges -->
+        <div class="flex items-start justify-between gap-3 mb-2.5">
+          <div class="flex items-start gap-3 flex-1">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr ${avatarGradient} text-white font-extrabold text-xs flex items-center justify-center shrink-0 shadow-xs">
+              ${initials}
             </div>
-            <h3 class="text-sm font-bold text-white tracking-tight leading-snug">
-              ${job.title}
-            </h3>
-            <p class="text-xs font-medium text-slate-400 mt-0.5">
-              🏢 <strong class="text-slate-200">${job.company}</strong> • <span class="text-slate-500">${job.location}</span>
-            </p>
+            <div>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="text-xs font-bold text-slate-900">${job.company}</span>
+                <span class="text-slate-300">•</span>
+                <span class="text-[11px] font-medium text-slate-500">${job.location}</span>
+              </div>
+              <h3 class="text-sm font-bold text-slate-900 tracking-tight leading-snug mt-0.5">
+                ${job.title}
+              </h3>
+            </div>
           </div>
 
           <!-- Star Button -->
           <button 
             onclick="handleToggleStar('${job.id}')" 
             title="${isStarred ? 'Unstar' : 'Save for later'}"
-            class="p-1.5 rounded-lg border border-slate-800 text-slate-400 hover:text-amber-400 hover:bg-slate-800/60 transition-colors"
+            class="p-2 rounded-xl border border-slate-200 text-slate-400 hover:text-amber-500 hover:border-amber-300 hover:bg-amber-50/50 transition-colors shrink-0"
           >
-            <svg class="w-4 h-4 ${isStarred ? 'text-amber-400 fill-amber-400' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 ${isStarred ? 'text-amber-500 fill-amber-500' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
             </svg>
           </button>
         </div>
 
-        <!-- Why You Fit Section -->
-        <div class="bg-slate-950/60 border border-slate-800/60 rounded-xl p-2.5 my-3">
-          <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1">
-            <svg class="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- Meta Pills Row -->
+        <div class="flex items-center gap-2 flex-wrap mb-3">
+          <span class="text-[11px] px-2.5 py-0.5 rounded-full border ${scoreBadge}">
+            🎯 ${job.matchScore}% Match
+          </span>
+          <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
+            💰 ${job.estSalary}
+          </span>
+          <span class="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 border border-slate-200">
+            📍 ${job.hubBadge}
+          </span>
+          <span class="text-[11px] text-slate-500 ml-auto hidden sm:inline">
+            💼 2–5 Yrs Exp
+          </span>
+        </div>
+
+        <!-- Why You Fit Box -->
+        <div class="bg-slate-50/80 border border-slate-200/90 rounded-xl p-3 mb-3">
+          <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            Why Gopal Fits This Role
+            Why Gopal Fits This Requisition
           </p>
           <ul class="space-y-1">
             ${bulletsHtml}
@@ -278,20 +317,23 @@
         </div>
 
         <!-- Action Row -->
-        <div class="flex items-center gap-2 pt-1">
+        <div class="flex items-center gap-2.5 pt-1">
           ${
             isApplied
               ? `
             <a 
               href="${job.directApplyUrl}" 
               target="_blank" 
-              class="flex-1 text-center py-2 px-3 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700/80 transition-all border border-slate-700/60"
+              class="flex-1 text-center py-2.5 px-4 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 transition-all flex items-center justify-center gap-1.5"
             >
-              Reopen Portal ↗
+              <span>Reopen Application Portal</span>
+              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
             </a>
             <button 
               onclick="handleUnapply('${job.id}')" 
-              class="py-2 px-3 rounded-xl text-xs font-semibold bg-slate-800/80 text-rose-300 hover:bg-rose-950/40 border border-rose-900/40 transition-all"
+              class="py-2.5 px-3.5 rounded-xl text-xs font-semibold bg-white text-rose-600 hover:bg-rose-50 border border-rose-200 transition-all"
             >
               ↩ Move to New
             </button>
@@ -299,24 +341,27 @@
               : `
             <button 
               onclick="handleApply('${job.id}')" 
-              class="flex-1 py-2 px-3 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all shadow-md shadow-emerald-500/20 active:scale-[0.98] flex items-center justify-center gap-1.5"
+              class="flex-1 py-2.5 px-4 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-sm hover:shadow transition-all active:scale-[0.98] flex items-center justify-center gap-1.5 cursor-pointer"
             >
-              <span>🚀 Apply Now</span>
-              <span class="text-[10px] font-normal opacity-75">(Official ATS)</span>
+              <span>🚀 Apply on Official Portal</span>
+              <svg class="w-3.5 h-3.5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
             </button>
             <button 
               onclick="handleCopyPitch('${job.id}', this)" 
-              class="py-2 px-3 rounded-xl text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/80 transition-all active:scale-[0.98] flex items-center gap-1"
-              title="Copy pre-written customized cover letter"
+              class="py-2.5 px-3.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200/90 transition-all active:scale-[0.98] flex items-center gap-1.5 cursor-pointer shrink-0"
+              title="Copy personalized cover letter to clipboard"
             >
-              <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
               </svg>
-              <span>Pitch</span>
+              <span>Copy Pitch</span>
             </button>
           `
           }
         </div>
+
       </div>
     `;
   }
@@ -331,7 +376,9 @@
     const filtered = getFilteredJobs();
 
     if (countEl) {
-      countEl.innerText = `Showing ${filtered.length} ${currentTab === "applied" ? "applied" : currentTab === "starred" ? "saved" : "new"} opportunities`;
+      countEl.innerText = `Showing ${filtered.length} ${
+        currentTab === "applied" ? "applied" : currentTab === "starred" ? "saved" : "fresh"
+      } opportunities`;
     }
 
     if (filtered.length === 0) {
@@ -352,7 +399,7 @@
     if (window.MNC_JOBS_DATA && Array.isArray(window.MNC_JOBS_DATA)) {
       allJobs = window.MNC_JOBS_DATA;
     } else {
-      console.warn("No MNC_JOBS_DATA found. Please ensure jobs-data.js is generated.");
+      console.warn("No MNC_JOBS_DATA found. Please check jobs-data.js.");
     }
 
     updateBadges();
