@@ -168,5 +168,45 @@
     "method": "LINKEDIN_CONNECT",
     "pitchSent": "Connection invitation sent directly on LinkedIn (Talent Acquisition @ Jconnect)",
     "contactedAt": "2026-11-24T09:55:50.000Z"
+  },
+  {
+    "id": "lead-1795521631910-1",
+    "authorName": "Hiring Lead",
+    "authorProfile": "https://www.linkedin.com/in/simarpreet-sinngh/",
+    "email": null,
+    "status": "PROFILE_FOLLOW_ONLY_OR_CONNECTED",
+    "method": "LINKEDIN",
+    "pitchSent": "Hi Hiring, saw your post for a react developer. I'm a Senior Mobile Engineer (3+ yrs, 4 production apps, React Native/Web, native bridging). Available immediately on contract/milestone. W...",
+    "contactedAt": "2026-11-24T12:04:28.807Z"
+  },
+  {
+    "id": "lead-1795161819940-1",
+    "authorName": "Hiring Lead",
+    "authorProfile": "https://www.linkedin.com/in/heather-black-salesforce-women-in-tech-speaker/",
+    "email": null,
+    "status": "PROFILE_FOLLOW_ONLY_OR_CONNECTED",
+    "method": "LINKEDIN",
+    "pitchSent": "Hi Heather, saw your post about Supermums hiring software roles. As a Senior Mobile/Full-Stack Engineer (React Native, Swift, Kotlin) with enterprise SDK experience, I'd love to connect a...",
+    "contactedAt": "2026-11-24T12:05:01.747Z"
+  },
+  {
+    "id": "dm-1795522280834",
+    "authorName": "Gani Lakshmi",
+    "authorProfile": "https://www.linkedin.com/in/gani-lakshmi-9b69912b3/",
+    "email": null,
+    "status": "SENT_DIRECT_MESSAGE",
+    "method": "LINKEDIN_DM",
+    "pitchSent": "Hi Gani, thanks for connecting!\n\nI came across your post regarding the Technical Recruitment @ Lovas IT.\n\nI am a Senior Mobile & Full-Stack Developer with 3+ ye...",
+    "contactedAt": "2026-11-24T12:11:20.834Z"
+  },
+  {
+    "id": "dm-1795522538720",
+    "authorName": "Urvashi Relwani",
+    "authorProfile": "https://www.linkedin.com/in/urvashi-relwani-abb684209/",
+    "email": null,
+    "status": "SENT_DIRECT_MESSAGE",
+    "method": "LINKEDIN_DM",
+    "pitchSent": "Hi Urvashi, thanks for connecting!\n\nI came across your post regarding the IT Developer requirement @ GirnarSoft.\n\nI am a Senior Mobile & Full-Stack Developer wi...",
+    "contactedAt": "2026-11-24T12:15:38.720Z"
   }
 ]
