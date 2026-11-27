@@ -1153,5 +1153,86 @@
     "applied": false,
     "appliedDate": null,
     "firstDiscoveredDate": "2026-11-25"
+  },
+  {
+    "id": "bosch-744000163961768",
+    "company": "Bosch Group India",
+    "category": "Auto, IoT & Smart Manufacturing Tech",
+    "ats": "smartrecruiters",
+    "sourcePortal": "bosch",
+    "title": "Senior Web Full Stack Developer",
+    "location": "coimbatore, in",
+    "directApplyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000163961768",
+    "descriptionSnippet": "",
+    "postedAt": "2026-11-27T05:00:20.316Z",
+    "discoveredAt": "2026-11-27T08:30:15.209Z",
+    "estSalary": "₹9 - ₹18 LPA",
+    "matchScore": 92,
+    "matchedSkills": [
+      "Full-Stack",
+      "Node.js",
+      "React.js / Next.js",
+      "REST APIs"
+    ],
+    "whyFit": [
+      "Matches **Invoicely** (Full-Stack Next.js + Node.js SaaS platform with automated billing & APIs).",
+      "Fits **SaveKit** (TypeScript + SQLite offline-first local data architecture)."
+    ],
+    "quickPitch": "I am a Senior Mobile & Full-Stack Developer with 3+ years of production experience building high-performance systems with React Native, React.js, Next.js, and Node.js. Notably, I engineered KickScore (scaling to 100k+ users with Hermes & WebSockets) and built enterprise native bridges for the TruVideo Automotive SDK. Given my background in end-to-end fullstack development and performance tuning, I would love to contribute to Bosch Group India's engineering team.",
+    "hubBadge": "India Tech Hub",
+    "expMatch": "2–5 Years (Matches Gopal's 3+ Yrs Exp)",
+    "applied": false,
+    "appliedDate": null,
+    "firstDiscoveredDate": "2026-11-27"
+  },
+  {
+    "id": "bosch-744000163964568",
+    "company": "Bosch Group India",
+    "category": "Auto, IoT & Smart Manufacturing Tech",
+    "ats": "smartrecruiters",
+    "sourcePortal": "bosch",
+    "title": "Senior Developer -  Flutter",
+    "location": "coimbatore, in",
+    "directApplyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000163964568",
+    "descriptionSnippet": "",
+    "postedAt": "2026-11-27T05:58:52.810Z",
+    "discoveredAt": "2026-11-27T08:30:15.209Z",
+    "estSalary": "₹9 - ₹18 LPA",
+    "matchScore": 70,
+    "matchedSkills": [],
+    "whyFit": [
+      "Matches **KickScore** and modern Next.js/React frontend architecture with 3+ years scale experience."
+    ],
+    "quickPitch": "I am a Senior Mobile & Full-Stack Developer with 3+ years of production experience building high-performance systems with React Native, React.js, Next.js, and Node.js. Notably, I engineered KickScore (scaling to 100k+ users with Hermes & WebSockets) and built enterprise native bridges for the TruVideo Automotive SDK. Given my background in end-to-end fullstack development and performance tuning, I would love to contribute to Bosch Group India's engineering team.",
+    "hubBadge": "India Tech Hub",
+    "expMatch": "2–5 Years (Matches Gopal's 3+ Yrs Exp)",
+    "applied": false,
+    "appliedDate": null,
+    "firstDiscoveredDate": "2026-11-27"
+  },
+  {
+    "id": "bosch-744000163963208",
+    "company": "Bosch Group India",
+    "category": "Auto, IoT & Smart Manufacturing Tech",
+    "ats": "smartrecruiters",
+    "sourcePortal": "bosch",
+    "title": "Embedded SW Developer",
+    "location": "bangalore, in",
+    "directApplyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000163963208",
+    "descriptionSnippet": "",
+    "postedAt": "2026-11-27T05:25:20.382Z",
+    "discoveredAt": "2026-11-27T08:30:15.209Z",
+    "estSalary": "₹9 - ₹18 LPA",
+    "matchScore": 70,
+    "matchedSkills": [],
+    "whyFit": [
+      "Matches **KickScore** and modern Next.js/React frontend architecture with 3+ years scale experience."
+    ],
+    "quickPitch": "I am a Senior Mobile & Full-Stack Developer with 3+ years of production experience building high-performance systems with React Native, React.js, Next.js, and Node.js. Notably, I engineered KickScore (scaling to 100k+ users with Hermes & WebSockets) and built enterprise native bridges for the TruVideo Automotive SDK. Given my background in end-to-end fullstack development and performance tuning, I would love to contribute to Bosch Group India's engineering team.",
+    "hubBadge": "Bangalore Tech Hub",
+    "expMatch": "2–5 Years (Matches Gopal's 3+ Yrs Exp)",
+    "applied": false,
+    "appliedDate": null,
+    "firstDiscoveredDate": "2026-11-27"
   }
 ]
